@@ -16,7 +16,7 @@
 </style>
 </head>
 <body>
-  <h1>Blueprint Pack Calculator</h1>
+  <h1>BOS Calculator</h1>
   <p><small>Enter BPs you <strong>own</strong> for each car (enter <strong>300</strong> for a maxed car).</small></p>
 
   <div class="row"><label>Car 1 BPs</label><input id="c1" type="number" value="300" min="0" max="300"></div>
@@ -30,13 +30,13 @@
 
   <div style="margin-top:12px">
     <label>Average BPs / 10-pack</label>
-    <input id="bpPerPack" type="number" value="11.33" step="0.01" min="0.1">
+    <!-- <input id="bpPerPack" type="number" value="11.33" step="0.01" min="0.1"> -->
     <small> (2%→15BP, 20%→4BP + pity → default 11.33)</small>
   </div>
 
   <div style="margin-top:12px">
     <label>Safety multiplier for 90% (e.g. 1.1)</label>
-    <input id="safety" type="number" value="1.1" step="0.01" min="1">
+    <!-- <input id="safety" type="number" value="1.1" step="0.01" min="1"> -->
   </div>
 
   <div style="margin-top:14px">
@@ -53,9 +53,9 @@ function calc() {
   const c1 = Number(el('c1').value)||0;
   const c2 = Number(el('c2').value)||0;
   const c3 = Number(el('c3').value)||0;
-  const packCost = Number(el('packCost').value)||750;
-  const bpPerPack = Number(el('bpPerPack').value)||11.33;
-  const safety = Number(el('safety').value)||1.1;
+  const packCost = Number(el('packCost')?.value)||750;
+  const bpPerPack = Number(el('bpPerPack')?.value)||11.33;
+  const safety = Number(el('safety')?.value)||1.1;
 
   const totalOwned = c1 + c2 + c3;
   const remaining = Math.max(0, 900 - totalOwned);
