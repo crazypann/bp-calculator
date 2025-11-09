@@ -3,119 +3,178 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BP Pack Calculator</title>
+<title>Black Friday 2025 Burst of Speed Calculator </title>
 <style>
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;max-width:720px;margin:20px auto;padding:18px}
-  h1{font-size:1.2rem;margin:0 0 10px}
-  label{display:block;margin:8px 0 4px}
-  input[type=number]{width:120px;padding:6px}
-  input[readonly]{background:#eee;color:#555;cursor:not-allowed;}
+  :root{
+    --bg-dark:#0c0c0e;
+    --bg-accent:#200404;
+    --card-bg:rgba(255,255,255,0.06);
+    --border:rgba(255,255,255,0.1);
+    --text:#fff;
+    --muted:#bbb;
+    --highlight:#ff4444;
+  }
+  body{
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    color:var(--text);
+    background:
+      linear-gradient(160deg,var(--bg-dark) 0%,var(--bg-accent) 100%),
+      url('https://cdn.jsdelivr.net/gh/konpa/devicon@master/icons/carbon/carbon-original.svg') center/8% repeat,
+      url('https://www.transparenttextures.com/patterns/carbon-fibre-big.png');
+    background-blend-mode:overlay;
+    max-width:980px;
+    margin:0 auto;
+    padding:20px;
+    min-height:100vh;
+  }
+  h1{text-align:center;font-size:1.6rem;margin-bottom:12px;color:#fff;letter-spacing:0.5px}
+  h2{font-size:1.1rem;margin:10px 0 4px;color:#fff}
+  .packs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:16px;
+    backdrop-filter:blur(8px);
+  }
+  label{display:block;margin:8px 0 4px;color:var(--highlight);font-weight:600}
+  input[type=number]{width:120px;padding:6px;border-radius:6px;border:1px solid #444;background:#111;color:#fff}
+  input[readonly]{background:#111;color:#888;cursor:not-allowed;}
   .row{display:flex;gap:12px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
-  .out{background:#f7f7f8;padding:10px;border-radius:8px;margin-top:12px}
-  button{padding:8px 12px;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer}
-  small{color:#666}
-  .share{margin-top:8px}
+  .actions{margin-top:8px}
+  button{padding:8px 10px;border-radius:6px;border:1px solid #666;background:#222;color:#fff;cursor:pointer}
+  button:hover{background:#333}
+  .out{background:#111;padding:10px;border-radius:8px;margin-top:10px;border:1px solid #333}
+  .small{color:var(--muted);font-size:0.9rem}
+  @media (max-width:800px){
+    .packs{grid-template-columns:1fr}
+    input[type=number]{width:100%}
+  }
 </style>
 </head>
 <body>
-  <h1>BOS Calculator</h1>
-  <p><small>Enter BPs you <strong>own</strong> for each car (enter <strong>300</strong> for a maxed car).</small></p>
+  <h1>Black Friday Burst of Speed Calculator</h1>
+  <p class="small" style="text-align:center;margin-bottom:16px;">
+    Enter BPs you <strong>own</strong> for each featured car (enter <strong>300</strong> for maxed cars).<br>
+    Results show <strong>Typical (50%)</strong> and <strong>Safe (90%)</strong> estimates.
+  </p>
 
-  <div class="row"><label>Car 1 BPs</label><input id="c1" type="number" value="300" min="0" max="300"></div>
-  <div class="row"><label>Car 2 BPs</label><input id="c2" type="number" value="36" min="0" max="300"></div>
-  <div class="row"><label>Car 3 BPs</label><input id="c3" type="number" value="66" min="0" max="300"></div>
+  <div class="packs">
+    <!-- PACK 1 -->
+    <section class="card" id="pack1">
+      <h2>PACK #1 — Burst of Speed</h2>
+      <div class="small">Rimac Nevera · HTT Locus Plethore · Bugatti La Voiture Noire</div>
 
-  <div style="margin-top:12px" class="row">
-    <div>
-      <label>Tokens per 10-pack</label>
-      <input id="packCost" type="number" value="750" min="1">
-    </div>
-    <div>
-      <label>Avg BPs / 10-pack</label>
-      <input id="bpPerPack" type="number" value="11.33" readonly>
-    </div>
-    <div>
-      <label>Safety multiplier (90%)</label>
-      <input id="safety" type="number" value="1.1" readonly>
-    </div>
+      <label>Rimac Nevera (BPs owned)</label>
+      <div class="row"><input id="p1_c1" type="number" value="300" min="0" max="300"></div>
+
+      <label>HTT Locus Plethore (BPs owned)</label>
+      <div class="row"><input id="p1_c2" type="number" value="36" min="0" max="300"></div>
+
+      <label>Bugatti La Voiture Noire (BPs owned)</label>
+      <div class="row"><input id="p1_c3" type="number" value="66" min="0" max="300"></div>
+
+      <div class="row">
+        <div>
+          <label>Tokens per 10-pack</label>
+          <input id="p1_packCost" type="number" value="750" min="1">
+        </div>
+        <div>
+          <label>Avg BPs / 10-pack</label>
+          <input id="p1_bpPerPack" type="number" value="11.33" readonly>
+        </div>
+        <div>
+          <label>Safety multiplier (90%)</label>
+          <input id="p1_safety" type="number" value="1.1" readonly>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="p1_calc">Calculate</button>
+        <button id="p1_reset">Reset</button>
+        <button id="p1_share">Copy share link</button>
+      </div>
+
+      <div id="p1_out" class="out" style="display:none" aria-live="polite"></div>
+    </section>
+
+    <!-- PACK 2 -->
+    <section class="card" id="pack2">
+      <h2>PACK #2 — Burst of Speed</h2>
+      <div class="small">Koenigsegg AgeraRS · CZinger 21C · SSC Tuatara Striker</div>
+
+      <label>Koenigsegg AgeraRS (BPs owned)</label>
+      <div class="row"><input id="p2_c1" type="number" value="0" min="0" max="300"></div>
+
+      <label>CZinger 21C (BPs owned)</label>
+      <div class="row"><input id="p2_c2" type="number" value="0" min="0" max="300"></div>
+
+      <label>SSC Tuatara Striker (BPs owned)</label>
+      <div class="row"><input id="p2_c3" type="number" value="0" min="0" max="300"></div>
+
+      <div class="row">
+        <div>
+          <label>Tokens per 10-pack</label>
+          <input id="p2_packCost" type="number" value="750" min="1">
+        </div>
+        <div>
+          <label>Avg BPs / 10-pack</label>
+          <input id="p2_bpPerPack" type="number" value="11.33" readonly>
+        </div>
+        <div>
+          <label>Safety multiplier (90%)</label>
+          <input id="p2_safety" type="number" value="1.1" readonly>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="p2_calc">Calculate</button>
+        <button id="p2_reset">Reset</button>
+        <button id="p2_share">Copy share link</button>
+      </div>
+
+      <div id="p2_out" class="out" style="display:none" aria-live="polite"></div>
+    </section>
   </div>
-
-  <div style="margin-top:14px">
-    <button id="calc">Calculate</button>
-    <button id="reset" style="margin-left:8px">Reset</button>
-    <button id="share" style="margin-left:8px">Copy share link</button>
-  </div>
-
-  <div id="out" class="out" aria-live="polite" style="display:none"></div>
 
 <script>
-const el=(id)=>document.getElementById(id);
+const FIX_BP_PER_PACK=11.33, FIX_SAFETY=1.1;
+const $=id=>document.getElementById(id);
+const fmt=n=>n.toLocaleString();
+function qsGet(n){const p=new URLSearchParams(window.location.search);return p.has(n)?p.get(n):null;}
 
-function qsGet(name) {
-  const params = new URLSearchParams(window.location.search);
-  return params.has(name) ? params.get(name) : null;
+function calcPack(prefix){
+  const c1=+($(prefix+'_c1').value)||0, c2=+($(prefix+'_c2').value)||0, c3=+($(prefix+'_c3').value)||0;
+  const packCost=+($(prefix+'_packCost').value)||750;
+  const total=c1+c2+c3, remaining=Math.max(0,900-total);
+  const packs50=Math.ceil(remaining/FIX_BP_PER_PACK);
+  const packs90=Math.ceil(packs50*FIX_SAFETY);
+  const tokens50=packs50*packCost, tokens90=packs90*packCost;
+  const out=$(prefix+'_out'); out.style.display='block';
+  out.innerHTML=`<div><strong>Total BPs:</strong> ${fmt(total)} | <strong>Remaining:</strong> ${fmt(remaining)}</div>
+  <hr><div><strong>Typical (50%)</strong>: ${fmt(packs50)} packs — ${fmt(tokens50)} tokens</div>
+  <div><strong>Safe (90%)</strong>: ${fmt(packs90)} packs — ${fmt(tokens90)} tokens</div>`;
 }
 
-function prefillFromQuery() {
-  const q1 = qsGet('c1'), q2 = qsGet('c2'), q3 = qsGet('c3');
-  const qpc = qsGet('packCost');
-  if (q1 !== null) el('c1').value = Math.min(300, Math.max(0, Number(q1)||0));
-  if (q2 !== null) el('c2').value = Math.min(300, Math.max(0, Number(q2)||0));
-  if (q3 !== null) el('c3').value = Math.min(300, Math.max(0, Number(q3)||0));
-  if (qpc !== null) el('packCost').value = Number(qpc)||750;
+function resetPack(p,defs){$(p+'_c1').value=defs[0];$(p+'_c2').value=defs[1];$(p+'_c3').value=defs[2];$(p+'_packCost').value=750;$(p+'_out').style.display='none';}
+function makeShareLink(p){
+  const c1=encodeURIComponent($(p+'_c1').value||''),c2=encodeURIComponent($(p+'_c2').value||''),c3=encodeURIComponent($(p+'_c3').value||''),pc=encodeURIComponent($(p+'_packCost').value||'');
+  const url=`${location.origin}${location.pathname}?${p}_c1=${c1}&${p}_c2=${c2}&${p}_c3=${c3}&${p}_packCost=${pc}`;
+  navigator.clipboard.writeText(url).then(()=>alert('Share link copied!'),()=>prompt('Copy this link:',url));
 }
 
-function calc() {
-  const c1 = Number(el('c1').value)||0;
-  const c2 = Number(el('c2').value)||0;
-  const c3 = Number(el('c3').value)||0;
-  const packCost = Number(el('packCost').value)||750;
-  const bpPerPack = 11.33;
-  const safety = 1.1;
-
-  const totalOwned = c1 + c2 + c3;
-  const remaining = Math.max(0, 900 - totalOwned);
-
-  const packs50 = Math.ceil(remaining / bpPerPack);
-  const packs90 = Math.ceil((remaining / bpPerPack) * safety);
-
-  const tokens50 = packs50 * packCost;
-  const tokens90 = packs90 * packCost;
-
-  const out = el('out');
-  out.style.display = 'block';
-  out.innerHTML = `
-    <strong>Total BPs owned:</strong> ${totalOwned} <br>
-    <strong>BPs remaining:</strong> ${remaining} <hr>
-    <strong>Typical (50%)</strong>: ${packs50.toLocaleString()} packs — ${tokens50.toLocaleString()} tokens<br>
-    <strong>Safe (90%)</strong>: ${packs90.toLocaleString()} packs — ${tokens90.toLocaleString()} tokens
-  `;
-}
-
-function makeShareLink() {
-  const c1 = encodeURIComponent(el('c1').value || '');
-  const c2 = encodeURIComponent(el('c2').value || '');
-  const c3 = encodeURIComponent(el('c3').value || '');
-  const pc = encodeURIComponent(el('packCost').value || '');
-  const base = window.location.origin + window.location.pathname;
-  const url = `${base}?c1=${c1}&c2=${c2}&c3=${c3}&packCost=${pc}`;
-  navigator.clipboard.writeText(url).then(()=>{
-    alert('Share link copied to clipboard!');
-  }, ()=>{
-    prompt('Copy this link:', url);
+document.addEventListener('DOMContentLoaded',()=>{
+  ['p1','p2'].forEach(p=>{
+    $(p+'_calc').onclick=()=>calcPack(p);
+    $(p+'_reset').onclick=()=>resetPack(p,p==='p1'?[300,36,66]:[0,0,0]);
+    $(p+'_share').onclick=()=>makeShareLink(p);
+    const q1=qsGet(p+'_c1'),q2=qsGet(p+'_c2'),q3=qsGet(p+'_c3'),qpc=qsGet(p+'_packCost');
+    if(q1!==null)$(p+'_c1').value=Math.min(300,Math.max(0,+q1||0));
+    if(q2!==null)$(p+'_c2').value=Math.min(300,Math.max(0,+q2||0));
+    if(q3!==null)$(p+'_c3').value=Math.min(300,Math.max(0,+q3||0));
+    if(qpc!==null)$(p+'_packCost').value=+qpc||750;
+    if(q1||q2||q3)calcPack(p);
   });
-}
-
-el('calc').addEventListener('click', calc);
-el('reset').addEventListener('click', ()=>{
-  el('c1').value=300; el('c2').value=36; el('c3').value=66; el('packCost').value=750;
-  el('out').style.display='none';
-});
-el('share').addEventListener('click', makeShareLink);
-
-window.addEventListener('load', ()=>{
-  prefillFromQuery();
-  calc();
 });
 </script>
 </body>
