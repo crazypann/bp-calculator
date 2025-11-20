@@ -1,0 +1,167 @@
+:root {
+  --bg-dark: #0c0c0e;
+  --bg-accent: #200404;
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #fff;
+  --muted: #bbb;
+  --highlight: #ff4444;
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: var(--text);
+  background:
+    linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-accent) 100%),
+    url('https://cdn.jsdelivr.net/gh/konpa/devicon@master/icons/carbon/carbon-original.svg') center/8% repeat,
+    url('https://www.transparenttextures.com/patterns/carbon-fibre-big.png');
+  background-blend-mode: overlay;
+  max-width: auto;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin: 10px 0 4px;
+  color: #fff;
+}
+
+.packs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  flex-grow: 1;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+}
+
+label {
+  display: block;
+  margin: 8px 0 4px;
+  color: var(--highlight);
+  font-weight: 600;
+}
+
+input[type=number] {
+  width: 120px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+}
+
+input[readonly] {
+  background: #111;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.actions {
+  margin-top: 8px;
+}
+
+button {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #666;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #333;
+}
+
+.out {
+  background: #111;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  border: 1px solid #333;
+}
+
+.small {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.bp-hint {
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.input-with-unit { position: relative; display: inline-block; }
+.input-with-unit input { padding-right: 44px; box-sizing: border-box; }
+.input-with-unit .unit { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.9rem; pointer-events: none; }
+
+.banner {
+  margin: 12px 0 18px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.banner img {
+  display: block;
+  width: 80%;
+  max-height: 200px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 24px;
+  padding: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+footer a {
+  color: #7289da;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+footer a:hover { color: #9baaf1; }
+
+/* Keep YouTube link/icon red (override generic footer hover) */
+footer a.youtube { color: var(--highlight); }
+footer a.youtube:hover { color: var(--highlight); }
+
+.youtube-logo { fill: currentColor; }
+
+@media (max-width:800px) {
+  .packs { grid-template-columns: 1fr; }
+  input[type=number] { width: 100%; }
+}

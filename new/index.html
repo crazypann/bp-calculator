@@ -1,83 +1,18 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Black Friday 2025 Burst of Speed Calculator</title>
-<style>
-  :root{
-    --bg-dark:#0c0c0e;
-    --bg-accent:#200404;
-    --card-bg:rgba(255,255,255,0.06);
-    --border:rgba(255,255,255,0.1);
-    --text:#fff;
-    --muted:#bbb;
-    --highlight:#ff4444;
-  }
-  body{
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    color:var(--text);
-    background:
-      linear-gradient(160deg,var(--bg-dark) 0%,var(--bg-accent) 100%),
-      url('https://cdn.jsdelivr.net/gh/konpa/devicon@master/icons/carbon/carbon-original.svg') center/8% repeat,
-      url('https://www.transparenttextures.com/patterns/carbon-fibre-big.png');
-    background-blend-mode:overlay;
-    max-width:auto;
-    margin:0 auto;
-    padding:20px;
-    min-height:80vh;
-    display:flex;
-    flex-direction:column;
-  }
-  h1{text-align:center;font-size:1.6rem;margin-bottom:12px;color:#fff;letter-spacing:0.5px}
-  h2{font-size:1.1rem;margin:10px 0 4px;color:#fff}
-  .packs{display:grid;grid-template-columns:1fr 1fr;gap:18px;flex-grow:1}
-  .card{
-    background:var(--card-bg);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:16px;
-    backdrop-filter:blur(8px);
-  }
-  label{display:block;margin:8px 0 4px;color:var(--highlight);font-weight:600}
-  input[type=number]{width:120px;padding:6px;border-radius:6px;border:1px solid #444;background:#111;color:#fff}
-  input[readonly]{background:#111;color:#888;cursor:not-allowed;}
-  .row{display:flex;gap:12px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
-  .actions{margin-top:8px}
-  button{padding:8px 10px;border-radius:6px;border:1px solid #666;background:#222;color:#fff;cursor:pointer}
-  button:hover{background:#333}
-  .out{background:#111;padding:10px;border-radius:8px;margin-top:10px;border:1px solid #333}
-  .small{color:var(--muted);font-size:0.9rem}
-  .banner{margin:12px 0 18px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);align-items: center; justify-content: center; display: flex; }
-  .banner img{display:block;width:80%;max-height:200px; }
-  footer{
-    text-align:center;
-    margin-top:24px;
-    padding:10px;
-    font-size:0.95rem;
-    color:var(--muted);
-  }
-  footer a{
-    color:#7289da;
-    text-decoration:none;
-    font-weight:600;
-    transition:color 0.2s;
-  }
-  footer a:hover{
-    color:#9baaf1;
-  }
-  @media (max-width:800px){
-    .packs{grid-template-columns:1fr}
-    input[type=number]{width:100%}
-  }
-</style>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Black Friday 2025 Burst of Speed Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
 <body>
-    
-    <div class="banner" role="img" aria-label="Black Friday 2025 — Burst of Speed">
-        <img src="Unity Banner.png" alt="Black Friday 2025 Burst of Speed" loading="lazy">
-    </div>
-    <h1>Black Friday 2025 Burst of Speed Calculator</h1>
+
+  <div class="banner" role="img" aria-label="Black Friday 2025 — Burst of Speed">
+    <img src="Unity Banner.png" alt="Black Friday 2025 Burst of Speed" loading="lazy">
+  </div>
+  <h1>Black Friday 2025 Burst of Speed Calculator</h1>
   <p class="small" style="text-align:center;margin-bottom:16px;">
     Enter BPs you <strong>own</strong> for each featured car (enter <strong>300</strong> for maxed cars).<br>
     Results show <strong>Typical (50%)</strong> and <strong>Safe (90%)</strong> estimates.
@@ -89,13 +24,44 @@
       <div class="small">Rimac Nevera · HTT Locus Plethore · Bugatti La Voiture Noire</div>
 
       <label>Rimac Nevera (BPs owned)</label>
-      <div class="row"><input id="p1_c1" type="number" value="0" min="0" max="300"></div>
+      <div class="row">
+        <select id="p1_c1_stars" aria-label="Rimac stars">
+          <option value="1">1 star (key)</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+          <option value="6">6 stars</option>
+        </select>
+    <input id="p1_c1_bp" type="number" min="0" aria-label="Rimac BPs on current star" placeholder="BPs">
+      </div>
 
       <label>HTT Locus Plethore (BPs owned)</label>
-      <div class="row"><input id="p1_c2" type="number" value="0" min="0" max="300"></div>
+      <div class="row">
+        <select id="p1_c2_stars" aria-label="HTT Locus Plethore stars">
+          <option value="0">Locked</option>
+          <option value="1">1 star</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+          <option value="6">6 stars</option>
+        </select>
+        <input id="p1_c2_bp" type="number" min="0" aria-label="HTT BPs on current star" placeholder="BPs">
+      </div>
 
       <label>Bugatti La Voiture Noire (BPs owned)</label>
-      <div class="row"><input id="p1_c3" type="number" value="0" min="0" max="300"></div>
+      <div class="row">
+        <select id="p1_c3_stars" aria-label="Bugatti stars">
+          <option value="1">1 star (key)</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+          <option value="6">6 stars</option>
+        </select>
+        <input id="p1_c3_bp" type="number" min="0" aria-label="Bugatti BPs on current star" placeholder="BPs">
+      </div>
 
       <div class="row">
         <div>
@@ -124,16 +90,48 @@
     <!-- PACK 2 -->
     <section class="card" id="pack2">
       <h2>PACK #2 — Burst of Speed</h2>
-      <div class="small">Koenigsegg AgeraRS · CZinger 21C · SSC Tuatara Striker</div>
+      <div class="small">Koenigsegg Agera RS · CZinger 21C · SSC Tuatara Striker</div>
 
-      <label>Koenigsegg AgeraRS (BPs owned)</label>
-      <div class="row"><input id="p2_c1" type="number" value="0" min="0" max="300"></div>
+      <label>Koenigsegg Agera RS (BPs owned)</label>
+      <div class="row">
+        <select id="p2_c1_stars" aria-label="Koenigsegg stars">
+          <option value="0">Locked</option>
+          <option value="1">1 star</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+          <option value="6">6 stars</option>
+        </select>
+        <input id="p2_c1_bp" type="number" min="0" aria-label="Koenigsegg BPs on current star" placeholder="BPs">
+      </div>
 
       <label>CZinger 21C (BPs owned)</label>
-      <div class="row"><input id="p2_c2" type="number" value="0" min="0" max="300"></div>
+      <div class="row">
+        <select id="p2_c2_stars" aria-label="CZinger stars">
+          <option value="0">Locked</option>
+          <option value="1">1 star</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+          <option value="6">6 stars</option>
+        </select>
+        <input id="p2_c2_bp" type="number" min="0" aria-label="CZinger BPs on current star" placeholder="BPs">
+      </div>
 
       <label>SSC Tuatara Striker (BPs owned)</label>
-      <div class="row"><input id="p2_c3" type="number" value="0" min="0" max="300"></div>
+      <div class="row">
+        <select id="p2_c3_stars" aria-label="Tuatara stars">
+          <option value="1">1 star (key)</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+          <option value="6">6 stars</option>
+        </select>
+        <input id="p2_c3_bp" type="number" min="0" aria-label="Tuatara BPs on current star" placeholder="BPs">
+      </div>
 
       <div class="row">
         <div>
@@ -161,53 +159,129 @@
   </div>
 
   <footer>
-    <a href="https://discord.gg/QVrAJPC" target="_blank" rel="noopener">
-      Unity discord 
-      <svg class="discord-logo" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: text-bottom; fill: currentColor;">
-        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-      </svg> 
-    </a>
+    <div>
+      Unity links
+      <a href="https://discord.gg/QVrAJPC" target="_blank" rel="noopener">
+        <svg class="discord-logo" viewBox="0 0 24 24" width="16" height="16"
+          style="vertical-align: text-bottom; fill: currentColor;">
+          <path
+            d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+        </svg>
+      </a>
+      <a class="youtube" href="https://www.youtube.com/@UNITYTM" target="_blank" rel="noopener">
+        <svg class="youtube-logo" viewBox="0 0 24 24" width="16" height="16"
+          style="vertical-align: text-bottom; fill: currentColor;">
+          <path
+            d="M23.498 6.186a2.995 2.995 0 0 0-2.11-2.116C19.513 3.5 12 3.5 12 3.5s-7.513 0-9.388.57A2.995 2.995 0 0 0 .502 6.186C0 8.084 0 12 0 12s0 3.916.502 5.814a2.995 2.995 0 0 0 2.11 2.116C4.487 20.5 12 20.5 12 20.5s7.513 0 9.388-.57a2.995 2.995 0 0 0 2.11-2.116C24 15.916 24 12 24 12s0-3.916-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z" />
+        </svg>
+      </a>
+    </div>
   </footer>
 
-<script>
-const FIX_BP_PER_PACK=11.33, FIX_SAFETY=1.1;
-const $=id=>document.getElementById(id);
-const fmt=n=>n.toLocaleString();
-function qsGet(n){const p=new URLSearchParams(window.location.search);return p.has(n)?p.get(n):null;}
+  <script>
+    const FIX_BP_PER_PACK = 11.33, FIX_SAFETY = 1.1;
+    const $ = id => document.getElementById(id);
+    const fmt = n => n.toLocaleString();
+    function qsGet(n) { const p = new URLSearchParams(window.location.search); return p.has(n) ? p.get(n) : null; }
 
-function calcPack(prefix){
-  const c1=+($(prefix+'_c1').value)||0, c2=+($(prefix+'_c2').value)||0, c3=+($(prefix+'_c3').value)||0;
-  const packCost=+($(prefix+'_packCost').value)||750;
-  const total=c1+c2+c3, remaining=Math.max(0,900-total);
-  const packs50=Math.ceil(remaining/FIX_BP_PER_PACK);
-  const packs90=Math.ceil(packs50*FIX_SAFETY);
-  const tokens50=packs50*packCost, tokens90=packs90*packCost;
-  const out=$(prefix+'_out'); out.style.display='block';
-  out.innerHTML=`<div><strong>Total BPs:</strong> ${fmt(total)} | <strong>Remaining:</strong> ${fmt(remaining)}</div>
+    // Per-star BP values for each car (order = star1, star2, ...). 'key' denotes a key-type star that doesn't grant BPs.
+    const STAR_MAP = {
+      'p1_c1': ['key', 40, 45, 60, 70, 85], // Rimac
+      'p1_c2': [85, 25, 29, 38, 54, 69],    // HTT
+      'p1_c3': ['key', 40, 45, 60, 70, 85], // Bugatti
+      'p2_c1': [85, 25, 29, 38, 54, 69],    // Koenigsegg
+      'p2_c2': [85, 25, 29, 38, 54, 69],    // CZinger
+      'p2_c3': ['key', 40, 45, 60, 70, 85]  // Tuatara
+    };
+
+    function computeCarBP(prefix, id) {
+      const key = `${prefix}_${id}`;
+      const arr = STAR_MAP[key] || [];
+      const stars = Math.max(0, +($(`${prefix}_${id}_stars`).value || 0));
+      const bpOn = Math.max(0, +($(`${prefix}_${id}_bp`).value || 0));
+      let total = 0;
+      // Sum completed stars (skip 'key' entries)
+      for (let i = 0; i < stars && i < arr.length; i++) {
+        const v = arr[i];
+        if (v === 'key') continue;
+        total += Number(v) || 0;
+      }
+      // Apply partial BP towards the next numeric star (skip key entries)
+      let next = stars;
+      while (next < arr.length && arr[next] === 'key') next++;
+      if (next < arr.length) {
+        total += Math.min(bpOn, Number(arr[next]) || 0);
+      } else {
+        // Beyond defined stars — allow bpOn but clamp final total to 300
+        total += bpOn;
+      }
+      return Math.min(300, Math.max(0, Math.round(total)));
+    }
+
+    function calcPack(prefix) {
+      const c1 = computeCarBP(prefix, 'c1');
+      const c2 = computeCarBP(prefix, 'c2');
+      const c3 = computeCarBP(prefix, 'c3');
+      const packCost = +($(prefix + '_packCost').value) || 750;
+      const total = c1 + c2 + c3;
+      const remaining = Math.max(0, 900 - total);
+      const packs50 = Math.ceil(remaining / FIX_BP_PER_PACK);
+      const packs90 = Math.ceil(packs50 * FIX_SAFETY);
+      const tokens50 = packs50 * packCost, tokens90 = packs90 * packCost;
+      const out = $(prefix + '_out'); out.style.display = 'block';
+      out.innerHTML = `<div><strong>Total BPs:</strong> ${fmt(total)} | <strong>Remaining:</strong> ${fmt(remaining)}</div>
   <hr><div><strong>Typical (50%)</strong>: ${fmt(packs50)} packs — ${fmt(tokens50)} tokens</div>
   <div><strong>Safe (90%)</strong>: ${fmt(packs90)} packs — ${fmt(tokens90)} tokens</div>`;
-}
+    }
 
-function resetPack(p,defs){$(p+'_c1').value=defs[0];$(p+'_c2').value=defs[1];$(p+'_c3').value=defs[2];$(p+'_packCost').value=750;$(p+'_out').style.display='none';}
-function makeShareLink(p){
-  const c1=encodeURIComponent($(p+'_c1').value||''),c2=encodeURIComponent($(p+'_c2').value||''),c3=encodeURIComponent($(p+'_c3').value||''),pc=encodeURIComponent($(p+'_packCost').value||'');
-  const url=`${location.origin}${location.pathname}?${p}_c1=${c1}&${p}_c2=${c2}&${p}_c3=${c3}&${p}_packCost=${pc}`;
-  navigator.clipboard.writeText(url).then(()=>alert('Share link copied!'),()=>prompt('Copy this link:',url));
-}
+    function resetPack(p) {
+      // reset stars and bp inputs to sensible defaults and hide output
+      ['c1', 'c2', 'c3'].forEach(id => {
+        const sel = $(p + `_${id}_stars`);
+        const bp = $(p + `_${id}_bp`);
+        // if this car is a key-car (STAR_MAP has 'key' at index 0), default to 1 star, else 0
+        const map = STAR_MAP[`${p}_${id}`] || [];
+        const defaultStars = (map.length && map[0] === 'key') ? 1 : 0;
+        if (sel) sel.value = defaultStars;
+        if (bp) bp.value = 0;
+      });
+      if ($(p + '_packCost')) $(p + '_packCost').value = 750;
+      if ($(p + '_out')) $(p + '_out').style.display = 'none';
+    }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  ['p1','p2'].forEach(p=>{
-    $(p+'_calc').onclick=()=>calcPack(p);
-    $(p+'_reset').onclick=()=>resetPack(p,p==='p1'?[300,36,66]:[0,0,0]);
-    $(p+'_share').onclick=()=>makeShareLink(p);
-    const q1=qsGet(p+'_c1'),q2=qsGet(p+'_c2'),q3=qsGet(p+'_c3'),qpc=qsGet(p+'_packCost');
-    if(q1!==null)$(p+'_c1').value=Math.min(300,Math.max(0,+q1||0));
-    if(q2!==null)$(p+'_c2').value=Math.min(300,Math.max(0,+q2||0));
-    if(q3!==null)$(p+'_c3').value=Math.min(300,Math.max(0,+q3||0));
-    if(qpc!==null)$(p+'_packCost').value=+qpc||750;
-    if(q1||q2||q3)calcPack(p);
-  });
-});
-</script>
+    function makeShareLink(p) {
+      const s1 = encodeURIComponent($(p + '_c1_stars').value || ''), b1 = encodeURIComponent($(p + '_c1_bp').value || '');
+      const s2 = encodeURIComponent($(p + '_c2_stars').value || ''), b2 = encodeURIComponent($(p + '_c2_bp').value || '');
+      const s3 = encodeURIComponent($(p + '_c3_stars').value || ''), b3 = encodeURIComponent($(p + '_c3_bp').value || '');
+      const pc = encodeURIComponent($(p + '_packCost').value || '');
+      const url = `${location.origin}${location.pathname}?${p}_c1_stars=${s1}&${p}_c1_bp=${b1}&${p}_c2_stars=${s2}&${p}_c2_bp=${b2}&${p}_c3_stars=${s3}&${p}_c3_bp=${b3}&${p}_packCost=${pc}`;
+      navigator.clipboard.writeText(url).then(() => alert('Share link copied!'), () => prompt('Copy this link:', url));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      ['p1', 'p2'].forEach(p => {
+        if ($(p + '_calc')) $(p + '_calc').onclick = () => calcPack(p);
+        if ($(p + '_reset')) $(p + '_reset').onclick = () => resetPack(p);
+        if ($(p + '_share')) $(p + '_share').onclick = () => makeShareLink(p);
+
+        // read new-style query params (backwards compatibility with legacy params is limited)
+        const q = new URLSearchParams(window.location.search);
+        const keys = ['c1', 'c2', 'c3'];
+        let any = false;
+        keys.forEach(id => {
+          const ss = q.get(`${p}_${id}_stars`), bb = q.get(`${p}_${id}_bp`);
+          if (ss !== null && $(p + `_${id}_stars`)) { $(p + `_${id}_stars`).value = Math.min(6, Math.max(0, +ss)); any = true; }
+          if (bb !== null && $(p + `_${id}_bp`)) { $(p + `_${id}_bp`).value = Math.max(0, +bb); any = true; }
+          // legacy support: ?p_c1=NUMBER -> treat as bp on current star
+          const legacy = q.get(`${p}_${id}`);
+          if (legacy !== null && $(p + `_${id}_bp`)) { $(p + `_${id}_bp`).value = Math.max(0, +legacy); any = true; }
+        });
+        const qpc = q.get(`${p}_packCost`);
+        if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || 750;
+        if (any) calcPack(p);
+      });
+    });
+  </script>
 </body>
+
 </html>
