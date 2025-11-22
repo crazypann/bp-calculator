@@ -304,17 +304,21 @@
         const tokens = Math.max(0, +$('rev_tokens').value || 0);
         const packCost = Math.max(1, +$('rev_packCost').value || 750);
         const bpPerPack = Math.max(0.1, +$('rev_bpPerPack').value || 11.33);
-        const packs = tokens / packCost;
-        // For each pack, show total BPs (rounded down)
+        const packs = Math.floor(tokens / packCost);
+        const safePacks = Math.floor(packs / FIX_SAFETY);
+        // For each pack, show total BPs (rounded down) and safe BPs
         const packsArr = [
           { pack: 'Pack #1', cars: ['Rimac Nevera', 'HTT Locus Plethore', 'Bugatti La Voiture Noire'] },
           { pack: 'Pack #2', cars: ['Koenigsegg Agera RS', 'CZinger 21C', 'SSC Tuatara Striker'] }
         ];
-        let html = `<div><strong>Tokens:</strong> ${fmt(tokens)} | <strong>Packs:</strong> ${packs.toFixed(2)}</div><hr>`;
+        let html = `<div><strong>Tokens:</strong> ${fmt(tokens)} | <strong>Packs:</strong> ${packs} | <strong>Safe Packs (90%):</strong> ${safePacks}</div><hr>`;
+        function roundTo4(n) { return Math.floor(n / 4) * 4; }
         packsArr.forEach(group => {
-          let totalBP = Math.floor(packs * bpPerPack);
+          let totalBP = roundTo4(packs * bpPerPack);
+          let safeBP = roundTo4(safePacks * bpPerPack);
           if (totalBP > 900) totalBP = 900;
-          html += `<div><strong>${group.pack}</strong>: <strong>${totalBP}</strong> BPs (total for all cars, max 900)</div>`;
+          if (safeBP > 900) safeBP = 900;
+          html += `<div><strong>${group.pack}</strong>: <strong>${totalBP}</strong> BPs (typical), <strong>${safeBP}</strong> BPs (safe, 90%, max 900)</div>`;
         });
         const out = $('rev_out');
         out.style.display = 'block';
