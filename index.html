@@ -66,7 +66,7 @@
       <div class="row">
         <div>
           <label>Tokens per 10-pack</label>
-          <input id="p1_packCost" type="number" value="750" min="1">
+          <input id="p1_packCost" type="number" value="750" readonly>
         </div>
         <div>
           <label>Avg BPs / 10-pack</label>
@@ -136,7 +136,7 @@
       <div class="row">
         <div>
           <label>Tokens per 10-pack</label>
-          <input id="p2_packCost" type="number" value="750" min="1">
+          <input id="p2_packCost" type="number" value="750" readonly>
         </div>
         <div>
           <label>Avg BPs / 10-pack</label>
@@ -157,6 +157,25 @@
       <div id="p2_out" class="out" style="display:none" aria-live="polite"></div>
     </section>
   </div>
+
+  <!-- Reverse Calculator Section -->
+  <section class="card" id="reverse-calc" style="margin-top:32px;">
+    <h2>Reverse Calculator — Tokens to BPs</h2>
+    <div class="small">Enter tokens to estimate total BPs for each pack (max 900 per pack).</div>
+    <div class="row">
+      <label for="rev_tokens">Tokens you have</label>
+      <input id="rev_tokens" type="number" min="0" value="0">
+      <label for="rev_packCost">Tokens per 10-pack</label>
+      <input id="rev_packCost" type="number" value="750" readonly>
+      <label for="rev_bpPerPack">Avg BPs / 10-pack</label>
+      <input id="rev_bpPerPack" type="number" value="11.33" readonly>
+    </div>
+    <div class="actions">
+      <button id="rev_calc">Calculate</button>
+      <button id="rev_reset">Reset</button>
+    </div>
+    <div id="rev_out" class="out" style="display:none" aria-live="polite"></div>
+  </section>
 
   <footer>
     <div>
@@ -280,6 +299,33 @@
         if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || 750;
         if (any) calcPack(p);
       });
+      // Reverse calculator logic
+      if ($('rev_calc')) $('rev_calc').onclick = () => {
+        const tokens = Math.max(0, +$('rev_tokens').value || 0);
+        const packCost = Math.max(1, +$('rev_packCost').value || 750);
+        const bpPerPack = Math.max(0.1, +$('rev_bpPerPack').value || 11.33);
+        const packs = tokens / packCost;
+        // For each pack, show total BPs (rounded down)
+        const packsArr = [
+          { pack: 'Pack #1', cars: ['Rimac Nevera', 'HTT Locus Plethore', 'Bugatti La Voiture Noire'] },
+          { pack: 'Pack #2', cars: ['Koenigsegg Agera RS', 'CZinger 21C', 'SSC Tuatara Striker'] }
+        ];
+        let html = `<div><strong>Tokens:</strong> ${fmt(tokens)} | <strong>Packs:</strong> ${packs.toFixed(2)}</div><hr>`;
+        packsArr.forEach(group => {
+          let totalBP = Math.floor(packs * bpPerPack);
+          if (totalBP > 900) totalBP = 900;
+          html += `<div><strong>${group.pack}</strong>: <strong>${totalBP}</strong> BPs (total for all cars, max 900)</div>`;
+        });
+        const out = $('rev_out');
+        out.style.display = 'block';
+        out.innerHTML = html;
+      };
+      if ($('rev_reset')) $('rev_reset').onclick = () => {
+        $('rev_tokens').value = 0;
+        $('rev_packCost').value = 750;
+        $('rev_bpPerPack').value = 11.33;
+        $('rev_out').style.display = 'none';
+      };
     });
   </script>
 </body>
