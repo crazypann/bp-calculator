@@ -160,7 +160,7 @@
   <!-- Reverse Calculator Section -->
   <section class="card" id="reverse-calc" style="margin-top:32px;">
     <h2>Reverse Calculator — Tokens to BPs</h2>
-    <div class="small">Enter tokens to estimate total BPs for each pack (max 900 per pack).</div>
+    <div class="small">Enter tokens to estimate total BPs for each pack.</div>
     <div class="row">
       <label for="rev_tokens">Tokens you have</label>
       <input id="rev_tokens" type="number" min="0" value="0">
@@ -212,6 +212,15 @@
       'p2_c3': ['key', 40, 45, 60, 70, 85]     // Koenigsegg Gemera
     };
 
+    function getCarMaxBP(key) {
+      const arr = STAR_MAP[key] || [];
+      return arr.reduce((sum, v) => v === 'key' ? sum : sum + (Number(v) || 0), 0);
+    }
+
+    function getPackMaxBP(prefix) {
+      return ['c1', 'c2', 'c3'].reduce((sum, id) => sum + getCarMaxBP(`${prefix}_${id}`), 0);
+    }
+
     function computeCarBP(prefix, id) {
       const key = `${prefix}_${id}`;
       const arr = STAR_MAP[key] || [];
@@ -230,10 +239,11 @@
       if (next < arr.length) {
         total += Math.min(bpOn, Number(arr[next]) || 0);
       } else {
-        // Beyond defined stars — allow bpOn but clamp final total to 300
+        // Beyond defined stars — allow bpOn but clamp final total to car max
         total += bpOn;
       }
-      return Math.min(300, Math.max(0, Math.round(total)));
+      const carMax = getCarMaxBP(key);
+      return Math.min(carMax, Math.max(0, Math.round(total)));
     }
 
     function calcPack(prefix) {
@@ -242,7 +252,8 @@
       const c3 = computeCarBP(prefix, 'c3');
       const packCost = +($(prefix + '_packCost').value) || 750;
       const total = c1 + c2 + c3;
-      const remaining = Math.max(0, 900 - total);
+      const packMax = getPackMaxBP(prefix);
+      const remaining = Math.max(0, packMax - total);
       const packs50 = Math.ceil(remaining / FIX_BP_PER_PACK);
       const packs90 = Math.ceil(packs50 * FIX_SAFETY);
       const tokens50 = packs50 * packCost, tokens90 = packs90 * packCost;
@@ -307,17 +318,18 @@
         const safePacks = Math.floor(packs / FIX_SAFETY);
         // For each pack, show total BPs (rounded down) and safe BPs
         const packsArr = [
-          { pack: 'Pack #1', cars: ['Rimac Nevera', 'HTT Locus Plethore', 'Bugatti La Voiture Noire'] },
-          { pack: 'Pack #2', cars: ['Koenigsegg Agera RS', 'CZinger 21C', 'SSC Tuatara Striker'] }
+          { prefix: 'p1', pack: 'Pack #1' },
+          { prefix: 'p2', pack: 'Pack #2' }
         ];
         let html = `<div><strong>Tokens:</strong> ${fmt(tokens)} | <strong>Packs:</strong> ${packs} | <strong>Safe Packs (90%):</strong> ${safePacks}</div><hr>`;
         function roundTo4(n) { return Math.floor(n / 4) * 4; }
         packsArr.forEach(group => {
+          const packMax = getPackMaxBP(group.prefix);
           let totalBP = roundTo4(packs * bpPerPack);
           let safeBP = roundTo4(safePacks * bpPerPack);
-          if (totalBP > 900) totalBP = 900;
-          if (safeBP > 900) safeBP = 900;
-          html += `<div><strong>${group.pack}</strong>: <strong>${totalBP}</strong> BPs (typical), <strong>${safeBP}</strong> BPs (safe, 90%, max 900)</div>`;
+          if (totalBP > packMax) totalBP = packMax;
+          if (safeBP > packMax) safeBP = packMax;
+          html += `<div><strong>${group.pack}</strong>: <strong>${totalBP}</strong> BPs (typical), <strong>${safeBP}</strong> BPs (safe, 90%, max ${packMax})</div>`;
         });
         const out = $('rev_out');
         out.style.display = 'block';
