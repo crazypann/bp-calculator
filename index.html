@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Black Friday 2025 Burst of Speed Calculator</title>
+    <title>Mosler Super GT 2026 BOS Pack Calculator</title>
     <link rel="stylesheet" href="styles.css">
   </head>
 
 <body>
 
-  <div class="banner" role="img" aria-label="Black Friday 2025 — Burst of Speed">
-    <img src="Unity Banner.png" alt="Black Friday 2025 Burst of Speed" loading="lazy">
+  <div class="banner" role="img" aria-label="Mosler Super GT 2026 — Burst of Speed">
+    <img src="Unity Banner.png" alt="Mosler Super GT 2026 Burst of Speed" loading="lazy">
   </div>
-  <h1>Black Friday 2025 Burst of Speed Calculator</h1>
+  <h1>Mosler Super GT 2026 Burst of Speed Pack Calculator</h1>
   <p class="small" style="text-align:center;margin-bottom:16px;">
     Enter stars and BPs you <strong>own</strong> for each featured car.<br>
     Results show <strong>Typical (50%)</strong> and <strong>Safe (90%)</strong> estimates.
@@ -21,11 +21,25 @@
     <!-- PACK 1 -->
     <section class="card" id="pack1">
       <h2>PACK #1 — Burst of Speed</h2>
-      <div class="small">Rimac Nevera · HTT Locus Plethore · Bugatti La Voiture Noire</div>
+      <div class="small">Regera · Chiron Super Sport · Koenigsegg One</div>
 
-      <label>Rimac Nevera (BPs owned)</label>
+      <label>Koenigsegg Regera (BPs owned)</label>
       <div class="row">
-        <select id="p1_c1_stars" aria-label="Rimac stars">
+        <select id="p1_c1_stars" aria-label="Regera stars">
+          <option value="1">1 star</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+          <option value="6">6 stars</option>
+        </select>
+    <input id="p1_c1_bp" type="number" min="0" aria-label="Regera BPs on current star" placeholder="BPs">
+      </div>
+
+      <label>Bugatti Chiron Super Sport 300+ (BPs owned)</label>
+      <div class="row">
+        <select id="p1_c2_stars" aria-label="Chiron Super Sport stars">
+          <option value="0">Locked</option>
           <option value="1">1 star (key)</option>
           <option value="2">2 stars</option>
           <option value="3">3 stars</option>
@@ -33,12 +47,12 @@
           <option value="5">5 stars</option>
           <option value="6">6 stars</option>
         </select>
-    <input id="p1_c1_bp" type="number" min="0" aria-label="Rimac BPs on current star" placeholder="BPs">
+        <input id="p1_c2_bp" type="number" min="0" aria-label="Chiron Super Sport BPs on current star" placeholder="BPs">
       </div>
 
-      <label>HTT Locus Plethore (BPs owned)</label>
+      <label>Koenigsegg One:1 (BPs owned)</label>
       <div class="row">
-        <select id="p1_c2_stars" aria-label="HTT Locus Plethore stars">
+        <select id="p1_c3_stars" aria-label="Koenigsegg One stars">
           <option value="0">Locked</option>
           <option value="1">1 star</option>
           <option value="2">2 stars</option>
@@ -47,20 +61,7 @@
           <option value="5">5 stars</option>
           <option value="6">6 stars</option>
         </select>
-        <input id="p1_c2_bp" type="number" min="0" aria-label="HTT BPs on current star" placeholder="BPs">
-      </div>
-
-      <label>Bugatti La Voiture Noire (BPs owned)</label>
-      <div class="row">
-        <select id="p1_c3_stars" aria-label="Bugatti stars">
-          <option value="1">1 star (key)</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-          <option value="6">6 stars</option>
-        </select>
-        <input id="p1_c3_bp" type="number" min="0" aria-label="Bugatti BPs on current star" placeholder="BPs">
+        <input id="p1_c3_bp" type="number" min="0" aria-label="Koenigsegg One BPs on current star" placeholder="BPs">
       </div>
 
       <div class="row">
@@ -90,11 +91,11 @@
     <!-- PACK 2 -->
     <section class="card" id="pack2">
       <h2>PACK #2 — Burst of Speed</h2>
-      <div class="small">Koenigsegg Agera RS · CZinger 21C · SSC Tuatara Striker</div>
+      <div class="small">Centodieci · Nevera R · Gemera</div>
 
-      <label>Koenigsegg Agera RS (BPs owned)</label>
+      <label>Bugatti Centodieci (BPs owned)</label>
       <div class="row">
-        <select id="p2_c1_stars" aria-label="Koenigsegg stars">
+        <select id="p2_c1_stars" aria-label="Centodieci stars">
           <option value="0">Locked</option>
           <option value="1">1 star</option>
           <option value="2">2 stars</option>
@@ -103,26 +104,12 @@
           <option value="5">5 stars</option>
           <option value="6">6 stars</option>
         </select>
-        <input id="p2_c1_bp" type="number" min="0" aria-label="Koenigsegg BPs on current star" placeholder="BPs">
+        <input id="p2_c1_bp" type="number" min="0" aria-label="Centodieci BPs on current star" placeholder="BPs">
       </div>
 
-      <label>CZinger 21C (BPs owned)</label>
+      <label>Rimac Nevera R (BPs owned)</label>
       <div class="row">
-        <select id="p2_c2_stars" aria-label="CZinger stars">
-          <option value="0">Locked</option>
-          <option value="1">1 star</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-          <option value="6">6 stars</option>
-        </select>
-        <input id="p2_c2_bp" type="number" min="0" aria-label="CZinger BPs on current star" placeholder="BPs">
-      </div>
-
-      <label>SSC Tuatara Striker (BPs owned)</label>
-      <div class="row">
-        <select id="p2_c3_stars" aria-label="Tuatara stars">
+        <select id="p2_c2_stars" aria-label="Nevera stars">
           <option value="1">1 star (key)</option>
           <option value="2">2 stars</option>
           <option value="3">3 stars</option>
@@ -130,7 +117,21 @@
           <option value="5">5 stars</option>
           <option value="6">6 stars</option>
         </select>
-        <input id="p2_c3_bp" type="number" min="0" aria-label="Tuatara BPs on current star" placeholder="BPs">
+        <input id="p2_c2_bp" type="number" min="0" aria-label="Nevera BPs on current star" placeholder="BPs">
+      </div>
+
+      <label>Koenigsegg Gemera (BPs owned)</label>
+      <div class="row">
+        <select id="p2_c3_stars" aria-label="Gemera stars">
+          <option value="0">Locked</option>
+          <option value="1">1 star</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+          <option value="6">6 stars</option>
+        </select>
+        <input id="p2_c3_bp" type="number" min="0" aria-label="Gemera BPs on current star" placeholder="BPs">
       </div>
 
       <div class="row">
