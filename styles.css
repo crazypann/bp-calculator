@@ -46,13 +46,13 @@ body {
 }
 
 .banner {
-  margin: 0 auto 24px;
-  max-width: 720px;
+  margin: 0 auto 20px;
+  max-width: 420px;
   width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border-color);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
   background: #000;
 }
 
@@ -60,6 +60,8 @@ body {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 150px;
+  object-fit: contain;
 }
 
 h1 {
