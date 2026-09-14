@@ -8,195 +8,212 @@
   </head>
 
 <body>
+  <main class="container">
+    <div class="banner" role="img" aria-label="Mosler Super GT 2026 — Burst of Speed">
+      <img src="Unity Banner.png" alt="Mosler Super GT 2026 Burst of Speed" loading="lazy">
+    </div>
+    <h1>Mosler Super GT 2026 Burst of Speed Pack Calculator</h1>
+    <p class="subtitle">
+      Enter stars and BPs you <strong>own</strong> for each featured car.<br>
+      Results show <strong>Typical (50%)</strong> and <strong>Safe (90%)</strong> estimates.
+    </p>
 
-  <div class="banner" role="img" aria-label="Mosler Super GT 2026 — Burst of Speed">
-    <img src="Unity Banner.png" alt="Mosler Super GT 2026 Burst of Speed" loading="lazy">
-  </div>
-  <h1>Mosler Super GT 2026 Burst of Speed Pack Calculator</h1>
-  <p class="small" style="text-align:center;margin-bottom:16px;">
-    Enter stars and BPs you <strong>own</strong> for each featured car.<br>
-    Results show <strong>Typical (50%)</strong> and <strong>Safe (90%)</strong> estimates.
-  </p>
-  <div class="packs">
-    <!-- PACK 1 -->
-    <section class="card" id="pack1">
-      <h2>PACK #1 — Burst of Speed</h2>
-      <div class="small">Regera · Chiron Super Sport · Koenigsegg One</div>
+    <div class="packs">
+      <!-- PACK 1 -->
+      <section class="card" id="pack1">
+        <h2>PACK #1 — Burst of Speed</h2>
+        <div class="car-list">Centodieci · Chiron Super Sport · Koenigsegg One</div>
 
-      <label>Koenigsegg Regera (BPs owned)</label>
-      <div class="row">
-        <select id="p1_c1_stars" aria-label="Regera stars">
-          <option value="0">Locked</option>
-          <option value="1">1 star</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-          <option value="6">6 stars</option>
-        </select>
-    <input id="p1_c1_bp" type="number" min="0" aria-label="Regera BPs on current star" placeholder="BPs">
-      </div>
+        <div class="car-group">
+          <label for="p1_c1_stars">Bugatti Centodieci (BPs owned)</label>
+          <div class="row">
+            <select id="p1_c1_stars" aria-label="Centodieci stars">
+              <option value="1">1 star (key)</option>
+              <option value="2">2 stars</option>
+              <option value="3">3 stars</option>
+              <option value="4">4 stars</option>
+              <option value="5">5 stars</option>
+              <option value="6">6 stars</option>
+            </select>
+            <input id="p1_c1_bp" type="number" min="0" aria-label="Centodieci BPs on current star" placeholder="BPs">
+          </div>
+        </div>
 
-      <label>Bugatti Chiron Super Sport 300+ (BPs owned)</label>
-      <div class="row">
-        <select id="p1_c2_stars" aria-label="Chiron Super Sport stars">
-          <option value="1">1 star (key)</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-          <option value="6">6 stars</option>
-        </select>
-        <input id="p1_c2_bp" type="number" min="0" aria-label="Chiron Super Sport BPs on current star" placeholder="BPs">
-      </div>
+        <div class="car-group">
+          <label for="p1_c2_stars">Bugatti Chiron Super Sport 300+ (BPs owned)</label>
+          <div class="row">
+            <select id="p1_c2_stars" aria-label="Chiron Super Sport stars">
+              <option value="1">1 star (key)</option>
+              <option value="2">2 stars</option>
+              <option value="3">3 stars</option>
+              <option value="4">4 stars</option>
+              <option value="5">5 stars</option>
+              <option value="6">6 stars</option>
+            </select>
+            <input id="p1_c2_bp" type="number" min="0" aria-label="Chiron Super Sport BPs on current star" placeholder="BPs">
+          </div>
+        </div>
 
-      <label>Koenigsegg One:1 (BPs owned)</label>
-      <div class="row">
-        <select id="p1_c3_stars" aria-label="Koenigsegg One stars">
-          <option value="0">Locked</option>
-          <option value="1">1 star</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-          <option value="6">6 stars</option>
-        </select>
-        <input id="p1_c3_bp" type="number" min="0" aria-label="Koenigsegg One BPs on current star" placeholder="BPs">
-      </div>
+        <div class="car-group">
+          <label for="p1_c3_stars">Koenigsegg One:1 (BPs owned)</label>
+          <div class="row">
+            <select id="p1_c3_stars" aria-label="Koenigsegg One stars">
+              <option value="0">Locked</option>
+              <option value="1">1 star</option>
+              <option value="2">2 stars</option>
+              <option value="3">3 stars</option>
+              <option value="4">4 stars</option>
+              <option value="5">5 stars</option>
+              <option value="6">6 stars</option>
+            </select>
+            <input id="p1_c3_bp" type="number" min="0" aria-label="Koenigsegg One BPs on current star" placeholder="BPs">
+          </div>
+        </div>
 
-      <div class="row">
+        <div class="params-row">
+          <div class="param-item">
+            <label for="p1_packCost">Tokens/10-pack</label>
+            <input id="p1_packCost" type="number" value="750" readonly>
+          </div>
+          <div class="param-item">
+            <label for="p1_bpPerPack">Avg BPs/pack</label>
+            <input id="p1_bpPerPack" type="number" value="11.33" readonly>
+          </div>
+          <div class="param-item">
+            <label for="p1_safety">Safety (90%)</label>
+            <input id="p1_safety" type="number" value="1.1" readonly>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="p1_calc" class="primary">Calculate</button>
+          <button id="p1_reset" class="secondary">Reset</button>
+          <button id="p1_share" class="secondary">Copy share link</button>
+        </div>
+
+        <div id="p1_out" class="out" style="display:none" aria-live="polite"></div>
+      </section>
+
+      <!-- PACK 2 -->
+      <section class="card" id="pack2">
+        <h2>PACK #2 — Burst of Speed</h2>
+        <div class="car-list">Regera · Nevera R · Gemera</div>
+
+        <div class="car-group">
+          <label for="p2_c1_stars">Koenigsegg Regera (BPs owned)</label>
+          <div class="row">
+            <select id="p2_c1_stars" aria-label="Regera stars">
+              <option value="0">Locked</option>
+              <option value="1">1 star</option>
+              <option value="2">2 stars</option>
+              <option value="3">3 stars</option>
+              <option value="4">4 stars</option>
+              <option value="5">5 stars</option>
+              <option value="6">6 stars</option>
+            </select>
+            <input id="p2_c1_bp" type="number" min="0" aria-label="Regera BPs on current star" placeholder="BPs">
+          </div>
+        </div>
+
+        <div class="car-group">
+          <label for="p2_c2_stars">Rimac Nevera R (BPs owned)</label>
+          <div class="row">
+            <select id="p2_c2_stars" aria-label="Nevera stars">
+              <option value="1">1 star (key)</option>
+              <option value="2">2 stars</option>
+              <option value="3">3 stars</option>
+              <option value="4">4 stars</option>
+              <option value="5">5 stars</option>
+              <option value="6">6 stars</option>
+            </select>
+            <input id="p2_c2_bp" type="number" min="0" aria-label="Nevera BPs on current star" placeholder="BPs">
+          </div>
+        </div>
+
+        <div class="car-group">
+          <label for="p2_c3_stars">Koenigsegg Gemera (BPs owned)</label>
+          <div class="row">
+            <select id="p2_c3_stars" aria-label="Gemera stars">
+              <option value="1">1 star (key)</option>
+              <option value="2">2 stars</option>
+              <option value="3">3 stars</option>
+              <option value="4">4 stars</option>
+              <option value="5">5 stars</option>
+              <option value="6">6 stars</option>
+            </select>
+            <input id="p2_c3_bp" type="number" min="0" aria-label="Gemera BPs on current star" placeholder="BPs">
+          </div>
+        </div>
+
+        <div class="params-row">
+          <div class="param-item">
+            <label for="p2_packCost">Tokens/10-pack</label>
+            <input id="p2_packCost" type="number" value="750" readonly>
+          </div>
+          <div class="param-item">
+            <label for="p2_bpPerPack">Avg BPs/pack</label>
+            <input id="p2_bpPerPack" type="number" value="11.33" readonly>
+          </div>
+          <div class="param-item">
+            <label for="p2_safety">Safety (90%)</label>
+            <input id="p2_safety" type="number" value="1.1" readonly>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="p2_calc" class="primary">Calculate</button>
+          <button id="p2_reset" class="secondary">Reset</button>
+          <button id="p2_share" class="secondary">Copy share link</button>
+        </div>
+
+        <div id="p2_out" class="out" style="display:none" aria-live="polite"></div>
+      </section>
+    </div>
+
+    <!-- Reverse Calculator Section -->
+    <section class="card" id="reverse-calc">
+      <h2>Reverse Calculator — Tokens to BPs</h2>
+      <div class="car-list">Enter tokens to estimate total BPs for each pack.</div>
+      <div class="rev-inputs">
         <div>
-          <label>Tokens per 10-pack</label>
-          <input id="p1_packCost" type="number" value="750" readonly>
+          <label for="rev_tokens">Tokens you have</label>
+          <input id="rev_tokens" type="number" min="0" value="0">
         </div>
         <div>
-          <label>Avg BPs / 10-pack</label>
-          <input id="p1_bpPerPack" type="number" value="11.33" readonly>
+          <label for="rev_packCost">Tokens per 10-pack</label>
+          <input id="rev_packCost" type="number" value="750" readonly>
         </div>
         <div>
-          <label>Safety multiplier (90%)</label>
-          <input id="p1_safety" type="number" value="1.1" readonly>
+          <label for="rev_bpPerPack">Avg BPs / 10-pack</label>
+          <input id="rev_bpPerPack" type="number" value="11.33" readonly>
         </div>
       </div>
-
       <div class="actions">
-        <button id="p1_calc">Calculate</button>
-        <button id="p1_reset">Reset</button>
-        <button id="p1_share">Copy share link</button>
+        <button id="rev_calc" class="primary">Calculate</button>
+        <button id="rev_reset" class="secondary">Reset</button>
       </div>
-
-      <div id="p1_out" class="out" style="display:none" aria-live="polite"></div>
+      <div id="rev_out" class="out" style="display:none" aria-live="polite"></div>
     </section>
 
-    <!-- PACK 2 -->
-    <section class="card" id="pack2">
-      <h2>PACK #2 — Burst of Speed</h2>
-      <div class="small">Centodieci · Nevera R · Gemera</div>
-
-      <label>Bugatti Centodieci (BPs owned)</label>
-      <div class="row">
-        <select id="p2_c1_stars" aria-label="Centodieci stars">
-          <option value="1">1 star (key)</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-          <option value="6">6 stars</option>
-        </select>
-        <input id="p2_c1_bp" type="number" min="0" aria-label="Centodieci BPs on current star" placeholder="BPs">
+    <footer>
+      <div>Unity links</div>
+      <div class="footer-links">
+        <a href="https://discord.gg/QVrAJPC" target="_blank" rel="noopener">
+          Discord
+          <svg class="discord-logo" viewBox="0 0 24 24" width="16" height="16" style="fill: currentColor;">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+          </svg>
+        </a>
+        <a class="youtube" href="https://www.youtube.com/@UNITYTM" target="_blank" rel="noopener">
+          YouTube
+          <svg class="youtube-logo" viewBox="0 0 24 24" width="16" height="16" style="fill: currentColor;">
+            <path d="M23.498 6.186a2.995 2.995 0 0 0-2.11-2.116C19.513 3.5 12 3.5 12 3.5s-7.513 0-9.388.57A2.995 2.995 0 0 0 .502 6.186C0 8.084 0 12 0 12s0 3.916.502 5.814a2.995 2.995 0 0 0 2.11 2.116C4.487 20.5 12 20.5 12 20.5s7.513 0 9.388-.57a2.995 2.995 0 0 0 2.11-2.116C24 15.916 24 12 24 12s0-3.916-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z" />
+          </svg>
+        </a>
       </div>
-
-      <label>Rimac Nevera R (BPs owned)</label>
-      <div class="row">
-        <select id="p2_c2_stars" aria-label="Nevera stars">
-          <option value="1">1 star (key)</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-          <option value="6">6 stars</option>
-        </select>
-        <input id="p2_c2_bp" type="number" min="0" aria-label="Nevera BPs on current star" placeholder="BPs">
-      </div>
-
-      <label>Koenigsegg Gemera (BPs owned)</label>
-      <div class="row">
-        <select id="p2_c3_stars" aria-label="Gemera stars">
-          <option value="1">1 star (key)</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-          <option value="6">6 stars</option>
-        </select>
-        <input id="p2_c3_bp" type="number" min="0" aria-label="Gemera BPs on current star" placeholder="BPs">
-      </div>
-
-      <div class="row">
-        <div>
-          <label>Tokens per 10-pack</label>
-          <input id="p2_packCost" type="number" value="750" readonly>
-        </div>
-        <div>
-          <label>Avg BPs / 10-pack</label>
-          <input id="p2_bpPerPack" type="number" value="11.33" readonly>
-        </div>
-        <div>
-          <label>Safety multiplier (90%)</label>
-          <input id="p2_safety" type="number" value="1.1" readonly>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button id="p2_calc">Calculate</button>
-        <button id="p2_reset">Reset</button>
-        <button id="p2_share">Copy share link</button>
-      </div>
-
-      <div id="p2_out" class="out" style="display:none" aria-live="polite"></div>
-    </section>
-  </div>
-
-  <!-- Reverse Calculator Section -->
-  <section class="card" id="reverse-calc" style="margin-top:32px;">
-    <h2>Reverse Calculator — Tokens to BPs</h2>
-    <div class="small">Enter tokens to estimate total BPs for each pack.</div>
-    <div class="row">
-      <label for="rev_tokens">Tokens you have</label>
-      <input id="rev_tokens" type="number" min="0" value="0">
-      <label for="rev_packCost">Tokens per 10-pack</label>
-      <input id="rev_packCost" type="number" value="750" readonly>
-      <label for="rev_bpPerPack">Avg BPs / 10-pack</label>
-      <input id="rev_bpPerPack" type="number" value="11.33" readonly>
-    </div>
-    <div class="actions">
-      <button id="rev_calc">Calculate</button>
-      <button id="rev_reset">Reset</button>
-    </div>
-    <div id="rev_out" class="out" style="display:none" aria-live="polite"></div>
-  </section>
-
-  <footer>
-    <div>
-      Unity links
-      <a href="https://discord.gg/QVrAJPC" target="_blank" rel="noopener">
-        <svg class="discord-logo" viewBox="0 0 24 24" width="16" height="16"
-          style="vertical-align: text-bottom; fill: currentColor;">
-          <path
-            d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
-        </svg>
-      </a>
-      <a class="youtube" href="https://www.youtube.com/@UNITYTM" target="_blank" rel="noopener">
-        <svg class="youtube-logo" viewBox="0 0 24 24" width="16" height="16"
-          style="vertical-align: text-bottom; fill: currentColor;">
-          <path
-            d="M23.498 6.186a2.995 2.995 0 0 0-2.11-2.116C19.513 3.5 12 3.5 12 3.5s-7.513 0-9.388.57A2.995 2.995 0 0 0 .502 6.186C0 8.084 0 12 0 12s0 3.916.502 5.814a2.995 2.995 0 0 0 2.11 2.116C4.487 20.5 12 20.5 12 20.5s7.513 0 9.388-.57a2.995 2.995 0 0 0 2.11-2.116C24 15.916 24 12 24 12s0-3.916-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z" />
-        </svg>
-      </a>
-    </div>
-  </footer>
+    </footer>
+  </main>
 
   <script src="script.js"></script>
 </body>
-
 </html>

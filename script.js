@@ -5,10 +5,10 @@ function qsGet(n) { const p = new URLSearchParams(window.location.search); retur
 
 // Per-star BP values for each car (order = star1, star2, ...). 'key' denotes a key-type star that doesn't grant BPs.
 const STAR_MAP = {
-  'p1_c1': [60, 13, 16, 25, 38, 48],       // Koenigsegg Regera
+  'p1_c1': ['key', 40, 45, 60, 70, 85],    // Bugatti Centodieci
   'p1_c2': ['key', 40, 45, 60, 70, 85],    // Bugatti Chiron Super Sport 300+
   'p1_c3': [35, 40, 45, 50, 60, 70],       // Koenigsegg One:1
-  'p2_c1': ['key', 40, 45, 60, 70, 85],    // Bugatti Centodieci
+  'p2_c1': [60, 13, 16, 25, 38, 48],       // Koenigsegg Regera
   'p2_c2': ['key', 40, 45, 60, 70, 85],    // Rimac Nevera R
   'p2_c3': ['key', 40, 45, 60, 70, 85]     // Koenigsegg Gemera
 };
@@ -59,9 +59,23 @@ function calcPack(prefix) {
   const packs90 = Math.ceil(packs50 * FIX_SAFETY);
   const tokens50 = packs50 * packCost, tokens90 = packs90 * packCost;
   const out = $(prefix + '_out'); out.style.display = 'block';
-  out.innerHTML = `<div><strong>Total BPs:</strong> ${fmt(total)} | <strong>Remaining:</strong> ${fmt(remaining)}</div>
-<hr><div><strong>Typical (50%)</strong>: ${fmt(packs50)} packs — ${fmt(tokens50)} tokens</div>
-<div><strong>Safe (90%)</strong>: ${fmt(packs90)} packs — ${fmt(tokens90)} tokens</div>`;
+  out.innerHTML = `
+    <div class="out-stats">
+      <div><span>Total BPs:</span> <strong>${fmt(total)} / ${fmt(packMax)}</strong></div>
+      <div><span>Remaining BPs:</span> <strong>${fmt(remaining)}</strong></div>
+    </div>
+    <div class="out-estimates">
+      <div class="estimate-box typical">
+        <div class="est-title">Typical (50%)</div>
+        <div class="est-val">${fmt(packs50)} packs</div>
+        <div class="est-tokens">${fmt(tokens50)} tokens</div>
+      </div>
+      <div class="estimate-box safe">
+        <div class="est-title">Safe (90%)</div>
+        <div class="est-val">${fmt(packs90)} packs</div>
+        <div class="est-tokens">${fmt(tokens90)} tokens</div>
+      </div>
+    </div>`;
 }
 
 function resetPack(p) {
@@ -85,7 +99,16 @@ function makeShareLink(p) {
   const s3 = encodeURIComponent($(p + '_c3_stars').value || ''), b3 = encodeURIComponent($(p + '_c3_bp').value || '');
   const pc = encodeURIComponent($(p + '_packCost').value || '');
   const url = `${location.origin}${location.pathname}?${p}_c1_stars=${s1}&${p}_c1_bp=${b1}&${p}_c2_stars=${s2}&${p}_c2_bp=${b2}&${p}_c3_stars=${s3}&${p}_c3_bp=${b3}&${p}_packCost=${pc}`;
-  navigator.clipboard.writeText(url).then(() => alert('Share link copied!'), () => prompt('Copy this link:', url));
+  const btn = $(p + '_share');
+  navigator.clipboard.writeText(url).then(() => {
+    if (btn) {
+      const origText = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = origText; }, 2000);
+    } else {
+      alert('Share link copied!');
+    }
+  }, () => prompt('Copy this link:', url));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -122,7 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
       { prefix: 'p1', pack: 'Pack #1' },
       { prefix: 'p2', pack: 'Pack #2' }
     ];
-    let html = `<div><strong>Tokens:</strong> ${fmt(tokens)} | <strong>Packs:</strong> ${packs} | <strong>Safe Packs (90%):</strong> ${safePacks}</div><hr>`;
+    let html = `
+      <div class="out-stats">
+        <div><span>Tokens:</span> <strong>${fmt(tokens)}</strong></div>
+        <div><span>Packs:</span> <strong>${packs}</strong></div>
+        <div><span>Safe Packs (90%):</span> <strong>${safePacks}</strong></div>
+      </div>`;
     function roundTo4(n) { return Math.floor(n / 4) * 4; }
     packsArr.forEach(group => {
       const packMax = getPackMaxBP(group.prefix);
@@ -130,7 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let safeBP = roundTo4(safePacks * bpPerPack);
       if (totalBP > packMax) totalBP = packMax;
       if (safeBP > packMax) safeBP = packMax;
-      html += `<div><strong>${group.pack}</strong>: <strong>${totalBP}</strong> BPs (typical), <strong>${safeBP}</strong> BPs (safe, 90%, max ${packMax})</div>`;
+      html += `
+        <div class="rev-result-group">
+          <strong>${group.pack}</strong>: <strong>${fmt(totalBP)}</strong> BPs (typical), <strong>${fmt(safeBP)}</strong> BPs (safe, 90%, max ${fmt(packMax)})
+        </div>`;
     });
     const out = $('rev_out');
     out.style.display = 'block';
