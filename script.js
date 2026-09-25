@@ -26,7 +26,8 @@ function computeCarBP(prefix, id) {
   const key = `${prefix}_${id}`;
   const arr = STAR_MAP[key] || [];
   const stars = Math.max(0, +($(`${prefix}_${id}_stars`).value || 0));
-  const bpOn = Math.max(0, +($(`${prefix}_${id}_bp`).value || 0));
+  const bpInput = $(`${prefix}_${id}_bp`).value;
+  const bpOn = bpInput === 'MAX' ? getCarMaxBP(key) : Math.max(0, +(bpInput || 0));
   let total = 0;
   // Sum completed stars (skip 'key' entries)
   for (let i = 0; i < stars && i < arr.length; i++) {
