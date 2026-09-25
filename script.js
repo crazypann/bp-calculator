@@ -5,12 +5,12 @@ function qsGet(n) { const p = new URLSearchParams(window.location.search); retur
 
 // Per-star BP values for each car (order = star1, star2, ...). 'key' denotes a key-type star that doesn't grant BPs.
 const STAR_MAP = {
-  'p1_c1': ['key', 40, 45, 60, 70, 85],    // Bugatti Centodieci
-  'p1_c2': ['key', 40, 45, 60, 70, 85],    // Bugatti Chiron Super Sport 300+
-  'p1_c3': [35, 40, 45, 50, 60, 70],       // Koenigsegg One:1
-  'p2_c1': [60, 13, 16, 25, 38, 48],       // Koenigsegg Regera
-  'p2_c2': ['key', 40, 45, 60, 70, 85],    // Rimac Nevera R
-  'p2_c3': ['key', 40, 45, 60, 70, 85]     // Koenigsegg Gemera
+  'p1_c1': ['key', 40, 45, 60, 70, 85],    // Koenigsegg Gemera
+  'p1_c2': ['key', 40, 45, 60, 70, 85],    // Rimac Nevera
+  'p1_c3': ['key', 40, 45, 60, 70, 85],    // Bugatti Centodieci
+  'p2_c1': [35, 40, 45, 50, 60, 70],       // Koenigsegg One:1
+  'p2_c2': ['key', 40, 45, 60, 70, 85],    // Bugatti Chiron Super Sport
+  'p2_c3': [60, 13, 16, 25, 38, 48]        // Koenigsegg Regera
 };
 
 function getCarMaxBP(key) {
@@ -51,7 +51,7 @@ function calcPack(prefix) {
   const c1 = computeCarBP(prefix, 'c1');
   const c2 = computeCarBP(prefix, 'c2');
   const c3 = computeCarBP(prefix, 'c3');
-  const packCost = +($(prefix + '_packCost').value) || 750;
+  const packCost = +($(prefix + '_packCost').value) || 900;
   const total = c1 + c2 + c3;
   const packMax = getPackMaxBP(prefix);
   const remaining = Math.max(0, packMax - total);
@@ -89,7 +89,7 @@ function resetPack(p) {
     if (sel) sel.value = defaultStars;
     if (bp) bp.value = 0;
   });
-  if ($(p + '_packCost')) $(p + '_packCost').value = 750;
+  if ($(p + '_packCost')) $(p + '_packCost').value = 900;
   if ($(p + '_out')) $(p + '_out').style.display = 'none';
 }
 
@@ -130,13 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (legacy !== null && $(p + `_${id}_bp`)) { $(p + `_${id}_bp`).value = Math.max(0, +legacy); any = true; }
     });
     const qpc = q.get(`${p}_packCost`);
-    if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || 750;
+    if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || 900;
     if (any) calcPack(p);
   });
   // Reverse calculator logic
   if ($('rev_calc')) $('rev_calc').onclick = () => {
     const tokens = Math.max(0, +$('rev_tokens').value || 0);
-    const packCost = Math.max(1, +$('rev_packCost').value || 750);
+    const packCost = Math.max(1, +$('rev_packCost').value || 900);
     const bpPerPack = Math.max(0.1, +$('rev_bpPerPack').value || 11.33);
     const packs = Math.floor(tokens / packCost);
     const safePacks = Math.floor(packs / FIX_SAFETY);
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   if ($('rev_reset')) $('rev_reset').onclick = () => {
     $('rev_tokens').value = 0;
-    $('rev_packCost').value = 750;
+    $('rev_packCost').value = 900;
     $('rev_bpPerPack').value = 11.33;
     $('rev_out').style.display = 'none';
   };
