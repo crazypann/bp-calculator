@@ -78,6 +78,24 @@ function calcPack(prefix) {
     </div>`;
 }
 
+function syncBPInput(prefix, id) {
+  const stars = $(`${prefix}_${id}_stars`);
+  const bp = $(`${prefix}_${id}_bp`);
+  if (!stars || !bp) return;
+
+  if (+stars.value === 6) {
+    bp.type = 'text';
+    bp.value = 'MAX';
+    bp.disabled = true;
+    return;
+  }
+
+  const wasMax = bp.disabled && bp.value === 'MAX';
+  bp.disabled = false;
+  bp.type = 'number';
+  if (wasMax) bp.value = 0;
+}
+
 function resetPack(p) {
   // reset stars and bp inputs to sensible defaults and hide output
   ['c1', 'c2', 'c3'].forEach(id => {
@@ -88,6 +106,7 @@ function resetPack(p) {
     const defaultStars = (map.length && map[0] === 'key') ? 1 : 0;
     if (sel) sel.value = defaultStars;
     if (bp) bp.value = 0;
+    syncBPInput(p, id);
   });
   if ($(p + '_packCost')) $(p + '_packCost').value = 900;
   if ($(p + '_out')) $(p + '_out').style.display = 'none';
@@ -116,6 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if ($(p + '_calc')) $(p + '_calc').onclick = () => calcPack(p);
     if ($(p + '_reset')) $(p + '_reset').onclick = () => resetPack(p);
     if ($(p + '_share')) $(p + '_share').onclick = () => makeShareLink(p);
+    ['c1', 'c2', 'c3'].forEach(id => {
+      const stars = $(p + `_${id}_stars`);
+      if (stars) stars.onchange = () => syncBPInput(p, id);
+    });
 
     // read new-style query params (backwards compatibility with legacy params is limited)
     const q = new URLSearchParams(window.location.search);
@@ -128,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // legacy support: ?p_c1=NUMBER -> treat as bp on current star
       const legacy = q.get(`${p}_${id}`);
       if (legacy !== null && $(p + `_${id}_bp`)) { $(p + `_${id}_bp`).value = Math.max(0, +legacy); any = true; }
+      syncBPInput(p, id);
     });
     const qpc = q.get(`${p}_packCost`);
     if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || 900;

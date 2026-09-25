@@ -153,7 +153,7 @@ h1 {
   text-overflow: ellipsis;
 }
 
-select, input[type="number"] {
+select, input[type="number"], input[type="text"] {
   width: 100%;
   padding: 9px 12px;
   border-radius: var(--radius-md);
@@ -175,7 +175,7 @@ select {
   padding-right: 32px;
 }
 
-select:focus, input[type="number"]:focus {
+select:focus, input[type="number"]:focus, input[type="text"]:focus {
   border-color: var(--border-focus);
   box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.2);
 }
@@ -184,6 +184,13 @@ input[readonly] {
   background: rgba(15, 23, 42, 0.5);
   color: var(--text-muted);
   border-color: rgba(255, 255, 255, 0.06);
+  cursor: not-allowed;
+}
+
+input:disabled {
+  opacity: 1;
+  background: rgba(15, 23, 42, 0.5);
+  color: var(--text-muted);
   cursor: not-allowed;
 }
 
