@@ -52,7 +52,7 @@ function calcPack(prefix) {
   const c1 = computeCarBP(prefix, 'c1');
   const c2 = computeCarBP(prefix, 'c2');
   const c3 = computeCarBP(prefix, 'c3');
-  const packCost = +($(prefix + '_packCost').value) || 900;
+  const packCost = +($(prefix + '_packCost').value) || 750;
   const total = c1 + c2 + c3;
   const packMax = getPackMaxBP(prefix);
   const remaining = Math.max(0, packMax - total);
@@ -109,7 +109,7 @@ function resetPack(p) {
     if (bp) bp.value = 0;
     syncBPInput(p, id);
   });
-  if ($(p + '_packCost')) $(p + '_packCost').value = 900;
+  if ($(p + '_packCost')) $(p + '_packCost').value = 750;
   if ($(p + '_out')) $(p + '_out').style.display = 'none';
 }
 
@@ -155,13 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
       syncBPInput(p, id);
     });
     const qpc = q.get(`${p}_packCost`);
-    if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || 900;
+    if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || 750;
     if (any) calcPack(p);
   });
   // Reverse calculator logic
   if ($('rev_calc')) $('rev_calc').onclick = () => {
     const tokens = Math.max(0, +$('rev_tokens').value || 0);
-    const packCost = Math.max(1, +$('rev_packCost').value || 900);
+    const packCost = Math.max(1, +$('rev_packCost').value || 750);
     const bpPerPack = Math.max(0.1, +$('rev_bpPerPack').value || 11.33);
     const packs = Math.floor(tokens / packCost);
     const safePacks = Math.floor(packs / FIX_SAFETY);
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   if ($('rev_reset')) $('rev_reset').onclick = () => {
     $('rev_tokens').value = 0;
-    $('rev_packCost').value = 900;
+    $('rev_packCost').value = 750;
     $('rev_bpPerPack').value = 11.33;
     $('rev_out').style.display = 'none';
   };
