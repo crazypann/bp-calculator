@@ -5,12 +5,12 @@ function qsGet(n) { const p = new URLSearchParams(window.location.search); retur
 
 // Per-star BP values for each car (order = star1, star2, ...). 'key' denotes a key-type star that doesn't grant BPs.
 const STAR_MAP = {
-  'p1_c1': ['key', 40, 45, 60, 70, 85],    // Koenigsegg Gemera
-  'p1_c2': ['key', 40, 45, 60, 70, 85],    // Rimac Nevera
-  'p1_c3': ['key', 40, 45, 60, 70, 85],    // Bugatti Centodieci
-  'p2_c1': [35, 40, 45, 50, 60, 70],       // Koenigsegg One:1
-  'p2_c2': ['key', 40, 45, 60, 70, 85],    // Bugatti Chiron Super Sport
-  'p2_c3': [60, 13, 16, 25, 38, 48]        // Koenigsegg Regera
+  'p1_c1': [35, 40, 45, 50, 60, 70],       // Tushek Aeon E
+  'p1_c2': ['key', 40, 45, 60, 70, 85],    // SSC Tuatara
+  'p1_c3': ['key', 30, 40, 50, 65, 80],    // Mercedes-Benz Vision One-Eleven
+  'p2_c1': [85, 25, 29, 38, 54, 69],       // Zenvo Aurora Tur
+  'p2_c2': ['key', 40, 45, 60, 70, 85],    // DEUS Vayanne
+  'p2_c3': ['key', 40, 45, 50, 60, 75]     // Porsche 919 Street
 };
 
 function getCarMaxBP(key) {
