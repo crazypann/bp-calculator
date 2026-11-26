@@ -1,5 +1,7 @@
 const DEFAULT_PACK_COSTS = { p1: 750, p2: 750 };
-const FIX_BP_PER_PACK = 11.33, FIX_SAFETY = 1.1;
+const BP_DROP_RATE = 0.15, BP_PER_DROP = 4, RANDOM_SLOTS_PER_TEN_PACK = 9;
+const EXPECTED_BPS_PER_TEN_PACK = Number((BP_PER_DROP * (1 + RANDOM_SLOTS_PER_TEN_PACK * BP_DROP_RATE)).toFixed(3));
+const BUFFER_FACTOR = 1.1;
 const $ = id => document.getElementById(id);
 const fmt = n => n.toLocaleString();
 function qsGet(n) { const p = new URLSearchParams(window.location.search); return p.has(n) ? p.get(n) : null; }
@@ -57,8 +59,8 @@ function calcPack(prefix) {
   const total = c1 + c2 + c3;
   const packMax = getPackMaxBP(prefix);
   const remaining = Math.max(0, packMax - total);
-  const packs50 = Math.ceil(remaining / FIX_BP_PER_PACK);
-  const packs90 = Math.ceil(packs50 * FIX_SAFETY);
+  const packs50 = Math.ceil(remaining / EXPECTED_BPS_PER_TEN_PACK);
+  const packs90 = Math.ceil(packs50 * BUFFER_FACTOR);
   const tokens50 = packs50 * packCost, tokens90 = packs90 * packCost;
   const out = $(prefix + '_out'); out.style.display = 'block';
   out.innerHTML = `
@@ -68,12 +70,12 @@ function calcPack(prefix) {
     </div>
     <div class="out-estimates">
       <div class="estimate-box typical">
-        <div class="est-title">Typical (50%)</div>
+        <div class="est-title">Average estimate</div>
         <div class="est-val">${fmt(packs50)} packs</div>
         <div class="est-tokens">${fmt(tokens50)} tokens</div>
       </div>
       <div class="estimate-box safe">
-        <div class="est-title">Safe (90%)</div>
+        <div class="est-title">With 10% buffer</div>
         <div class="est-val">${fmt(packs90)} packs</div>
         <div class="est-tokens">${fmt(tokens90)} tokens</div>
       </div>
@@ -162,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reverse calculator logic
   if ($('rev_calc')) $('rev_calc').onclick = () => {
     const tokens = Math.max(0, +$('rev_tokens').value || 0);
-    const bpPerPack = Math.max(0.1, +$('rev_bpPerPack').value || FIX_BP_PER_PACK);
+    const bpPerPack = Math.max(0.1, +$('rev_bpPerPack').value || EXPECTED_BPS_PER_TEN_PACK);
     const packsArr = [
       { prefix: 'p1', pack: 'Pack #1' },
       { prefix: 'p2', pack: 'Pack #2' }
@@ -170,12 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
     packsArr.forEach(group => {
       const packCost = Math.max(1, +$(`rev_${group.prefix}_packCost`).value || DEFAULT_PACK_COSTS[group.prefix]);
       group.packs = Math.floor(tokens / packCost);
-      group.safePacks = Math.floor(group.packs / FIX_SAFETY);
+      group.safePacks = Math.floor(group.packs / BUFFER_FACTOR);
     });
     let html = `
       <div class="out-stats">
         <div><span>Tokens:</span> <strong>${fmt(tokens)}</strong></div>
-        ${packsArr.map(group => `<div><span>${group.pack} packs:</span> <strong>${group.packs}</strong> (safe: ${group.safePacks})</div>`).join('')}
+        ${packsArr.map(group => `<div><span>${group.pack} packs:</span> <strong>${group.packs}</strong> (using 90% of tokens: ${group.safePacks})</div>`).join('')}
       </div>`;
     function roundTo4(n) { return Math.floor(n / 4) * 4; }
     packsArr.forEach(group => {
@@ -186,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (safeBP > packMax) safeBP = packMax;
       html += `
         <div class="rev-result-group">
-          <strong>${group.pack}</strong>: <strong>${fmt(totalBP)}</strong> BPs (typical), <strong>${fmt(safeBP)}</strong> BPs (safe, 90%, max ${fmt(packMax)})
+          <strong>${group.pack}</strong>: <strong>${fmt(totalBP)}</strong> BPs (average estimate), <strong>${fmt(safeBP)}</strong> BPs (using 90% of tokens, max ${fmt(packMax)})
         </div>`;
     });
     const out = $('rev_out');
@@ -197,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('rev_tokens').value = 0;
     $('rev_p1_packCost').value = DEFAULT_PACK_COSTS.p1;
     $('rev_p2_packCost').value = DEFAULT_PACK_COSTS.p2;
-    $('rev_bpPerPack').value = FIX_BP_PER_PACK;
+    $('rev_bpPerPack').value = EXPECTED_BPS_PER_TEN_PACK;
     $('rev_out').style.display = 'none';
   };
 });

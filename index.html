@@ -13,7 +13,8 @@
     <h1>Black Friday 2026 BOS Pack Calculator</h1>
     <p class="subtitle">
       Enter stars and BPs you <strong>own</strong> for each featured car.<br>
-      Results show <strong>Typical (50%)</strong> and <strong>Safe (90%)</strong> estimates.<br>
+      Results show an average estimate and an estimate with a 10% buffer.<br>
+      A 10-pack guarantees one 4-BP reward; the other nine each have a 15% chance of 4 BPs.<br>
       Both packs cost 750 tokens per 10-pack.
     </p>
 
@@ -76,10 +77,10 @@
           </div>
           <div class="param-item">
             <label for="p1_bpPerPack">Avg BPs/10-pack</label>
-            <input id="p1_bpPerPack" type="number" value="11.33" readonly>
+            <input id="p1_bpPerPack" type="number" value="9.4" readonly>
           </div>
           <div class="param-item">
-            <label for="p1_safety">Safety (90%)</label>
+            <label for="p1_safety">Buffer factor</label>
             <input id="p1_safety" type="number" value="1.1" readonly>
           </div>
         </div>
@@ -151,10 +152,10 @@
           </div>
           <div class="param-item">
             <label for="p2_bpPerPack">Avg BPs/10-pack</label>
-            <input id="p2_bpPerPack" type="number" value="11.33" readonly>
+            <input id="p2_bpPerPack" type="number" value="9.4" readonly>
           </div>
           <div class="param-item">
-            <label for="p2_safety">Safety (90%)</label>
+            <label for="p2_safety">Buffer factor</label>
             <input id="p2_safety" type="number" value="1.1" readonly>
           </div>
         </div>
@@ -188,7 +189,7 @@
         </div>
         <div>
           <label for="rev_bpPerPack">Avg BPs / 10-pack</label>
-          <input id="rev_bpPerPack" type="number" value="11.33" readonly>
+          <input id="rev_bpPerPack" type="number" value="9.4" readonly>
         </div>
       </div>
       <div class="actions">
