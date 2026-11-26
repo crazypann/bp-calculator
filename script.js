@@ -40,14 +40,14 @@ function computeCarBP(prefix, id) {
     if (v === 'key') continue;
     total += Number(v) || 0;
   }
-  // Apply partial BP towards the next numeric star (skip key entries)
-  let next = stars;
-  while (next < arr.length && arr[next] === 'key') next++;
-  if (next < arr.length) {
-    total += Math.min(bpOn, Number(arr[next]) || 0);
-  } else {
-    // Beyond defined stars — allow bpOn but clamp final total to car max
-    total += bpOn;
+  // Carry accumulated BPs through later star requirements, skipping key stars.
+  let remainingBP = bpOn;
+  for (let i = stars; i < arr.length && remainingBP > 0; i++) {
+    if (arr[i] === 'key') continue;
+    const requiredBP = Number(arr[i]) || 0;
+    const appliedBP = Math.min(remainingBP, requiredBP);
+    total += appliedBP;
+    remainingBP -= appliedBP;
   }
   const carMax = getCarMaxBP(key);
   return Math.min(carMax, Math.max(0, Math.round(total)));
