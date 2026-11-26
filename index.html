@@ -13,19 +13,20 @@
     <h1>Black Friday 2026 BOS Pack Calculator</h1>
     <p class="subtitle">
       Enter stars and BPs you <strong>own</strong> for each featured car.<br>
-      Results show <strong>Typical (50%)</strong> and <strong>Safe (90%)</strong> estimates.
+      Results show <strong>Typical (50%)</strong> and <strong>Safe (90%)</strong> estimates.<br>
+      Pack 1 costs 750 tokens and Pack 2 costs 900 tokens per 10-pack.
     </p>
 
     <div class="packs">
       <!-- PACK 1 -->
       <section class="card" id="pack1">
         <h2>PACK #1 — Burst of Speed</h2>
-        <div class="car-list">Aeon E · Tuatara · Vision One-Eleven</div>
+        <div class="car-list">Zenvo Aurora Tur · DEUS Vayanne · Porsche 919 Street</div>
 
         <div class="car-group">
-          <label for="p1_c1_stars">Aeon E (BPs owned)</label>
+          <label for="p1_c1_stars">Zenvo Aurora Tur (BPs owned)</label>
           <div class="row">
-            <select id="p1_c1_stars" aria-label="Aeon E stars">
+            <select id="p1_c1_stars" aria-label="Zenvo Aurora Tur stars">
               <option value="0">Locked</option>
               <option value="1">1 star</option>
               <option value="2">2 stars</option>
@@ -34,14 +35,14 @@
               <option value="5">5 stars</option>
               <option value="6">6 stars</option>
             </select>
-            <input id="p1_c1_bp" type="number" min="0" aria-label="Aeon E BPs on current star" placeholder="BPs">
+            <input id="p1_c1_bp" type="number" min="0" aria-label="Zenvo Aurora Tur BPs on current star" placeholder="BPs">
           </div>
         </div>
 
         <div class="car-group">
-          <label for="p1_c2_stars">SSC Tuatara (BPs owned)</label>
+          <label for="p1_c2_stars">DEUS Vayanne (BPs owned)</label>
           <div class="row">
-            <select id="p1_c2_stars" aria-label="Tuatara stars">
+            <select id="p1_c2_stars" aria-label="Vayanne stars">
               <option value="1">1 star (key)</option>
               <option value="2">2 stars</option>
               <option value="3">3 stars</option>
@@ -49,14 +50,14 @@
               <option value="5">5 stars</option>
               <option value="6">6 stars</option>
             </select>
-            <input id="p1_c2_bp" type="number" min="0" aria-label="Tuatara BPs on current star" placeholder="BPs">
+            <input id="p1_c2_bp" type="number" min="0" aria-label="Vayanne BPs on current star" placeholder="BPs">
           </div>
         </div>
 
         <div class="car-group">
-          <label for="p1_c3_stars">Mercedes-Benz Vision One-Eleven (BPs owned)</label>
+          <label for="p1_c3_stars">Porsche 919 Street (BPs owned)</label>
           <div class="row">
-            <select id="p1_c3_stars" aria-label="Vision One-Eleven stars">
+            <select id="p1_c3_stars" aria-label="919 Street stars">
               <option value="1">1 star (key)</option>
               <option value="2">2 stars</option>
               <option value="3">3 stars</option>
@@ -64,7 +65,7 @@
               <option value="5">5 stars</option>
               <option value="6">6 stars</option>
             </select>
-            <input id="p1_c3_bp" type="number" min="0" aria-label="Vision One-Eleven BPs on current star" placeholder="BPs">
+            <input id="p1_c3_bp" type="number" min="0" aria-label="919 Street BPs on current star" placeholder="BPs">
           </div>
         </div>
 
@@ -74,7 +75,7 @@
             <input id="p1_packCost" type="number" value="750" readonly>
           </div>
           <div class="param-item">
-            <label for="p1_bpPerPack">Avg BPs/pack</label>
+            <label for="p1_bpPerPack">Avg BPs/10-pack</label>
             <input id="p1_bpPerPack" type="number" value="11.33" readonly>
           </div>
           <div class="param-item">
@@ -95,12 +96,12 @@
       <!-- PACK 2 -->
       <section class="card" id="pack2">
         <h2>PACK #2 — Burst of Speed</h2>
-        <div class="car-list">Aurora Tur · Vayanne · 919 Street</div>
+        <div class="car-list">Aeon E · Tuatara · Vision One-Eleven</div>
 
         <div class="car-group">
-          <label for="p2_c1_stars">Zenvo Aurora Tur (BPs owned)</label>
+          <label for="p2_c1_stars">Aeon E (BPs owned)</label>
           <div class="row">
-            <select id="p2_c1_stars" aria-label="Aurora Tur stars">
+            <select id="p2_c1_stars" aria-label="Aeon E stars">
               <option value="0">Locked</option>
               <option value="1">1 star</option>
               <option value="2">2 stars</option>
@@ -109,14 +110,14 @@
               <option value="5">5 stars</option>
               <option value="6">6 stars</option>
             </select>
-            <input id="p2_c1_bp" type="number" min="0" aria-label="Aurora Tur BPs on current star" placeholder="BPs">
+            <input id="p2_c1_bp" type="number" min="0" aria-label="Aeon E BPs on current star" placeholder="BPs">
           </div>
         </div>
 
         <div class="car-group">
-          <label for="p2_c2_stars">DEUS Vayanne (BPs owned)</label>
+          <label for="p2_c2_stars">SSC Tuatara (BPs owned)</label>
           <div class="row">
-            <select id="p2_c2_stars" aria-label="Vayanne stars">
+            <select id="p2_c2_stars" aria-label="Tuatara stars">
               <option value="1">1 star (key)</option>
               <option value="2">2 stars</option>
               <option value="3">3 stars</option>
@@ -124,14 +125,14 @@
               <option value="5">5 stars</option>
               <option value="6">6 stars</option>
             </select>
-            <input id="p2_c2_bp" type="number" min="0" aria-label="Vayanne BPs on current star" placeholder="BPs">
+            <input id="p2_c2_bp" type="number" min="0" aria-label="Tuatara BPs on current star" placeholder="BPs">
           </div>
         </div>
 
         <div class="car-group">
-          <label for="p2_c3_stars">Porsche 919 Street (BPs owned)</label>
+          <label for="p2_c3_stars">Mercedes-Benz Vision One-Eleven (BPs owned)</label>
           <div class="row">
-            <select id="p2_c3_stars" aria-label="919 Street stars">
+            <select id="p2_c3_stars" aria-label="Vision One-Eleven stars">
               <option value="1">1 star (key)</option>
               <option value="2">2 stars</option>
               <option value="3">3 stars</option>
@@ -139,17 +140,17 @@
               <option value="5">5 stars</option>
               <option value="6">6 stars</option>
             </select>
-            <input id="p2_c3_bp" type="number" min="0" aria-label="919 Street BPs on current star" placeholder="BPs">
+            <input id="p2_c3_bp" type="number" min="0" aria-label="Vision One-Eleven BPs on current star" placeholder="BPs">
           </div>
         </div>
 
         <div class="params-row">
           <div class="param-item">
             <label for="p2_packCost">Tokens/10-pack</label>
-            <input id="p2_packCost" type="number" value="750" readonly>
+            <input id="p2_packCost" type="number" value="900" readonly>
           </div>
           <div class="param-item">
-            <label for="p2_bpPerPack">Avg BPs/pack</label>
+            <label for="p2_bpPerPack">Avg BPs/10-pack</label>
             <input id="p2_bpPerPack" type="number" value="11.33" readonly>
           </div>
           <div class="param-item">
@@ -178,8 +179,12 @@
           <input id="rev_tokens" type="number" min="0" value="0">
         </div>
         <div>
-          <label for="rev_packCost">Tokens per 10-pack</label>
-          <input id="rev_packCost" type="number" value="750" readonly>
+          <label for="rev_p1_packCost">Pack 1 tokens per 10-pack</label>
+          <input id="rev_p1_packCost" type="number" value="750" readonly>
+        </div>
+        <div>
+          <label for="rev_p2_packCost">Pack 2 tokens per 10-pack</label>
+          <input id="rev_p2_packCost" type="number" value="900" readonly>
         </div>
         <div>
           <label for="rev_bpPerPack">Avg BPs / 10-pack</label>

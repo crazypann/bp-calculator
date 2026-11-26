@@ -1,3 +1,4 @@
+const DEFAULT_PACK_COSTS = { p1: 750, p2: 900 };
 const FIX_BP_PER_PACK = 11.33, FIX_SAFETY = 1.1;
 const $ = id => document.getElementById(id);
 const fmt = n => n.toLocaleString();
@@ -5,12 +6,12 @@ function qsGet(n) { const p = new URLSearchParams(window.location.search); retur
 
 // Per-star BP values for each car (order = star1, star2, ...). 'key' denotes a key-type star that doesn't grant BPs.
 const STAR_MAP = {
-  'p1_c1': [35, 40, 45, 50, 60, 70],       // Tushek Aeon E
-  'p1_c2': ['key', 40, 45, 60, 70, 85],    // SSC Tuatara
-  'p1_c3': ['key', 30, 40, 50, 65, 80],    // Mercedes-Benz Vision One-Eleven
-  'p2_c1': [85, 25, 29, 38, 54, 69],       // Zenvo Aurora Tur
-  'p2_c2': ['key', 40, 45, 60, 70, 85],    // DEUS Vayanne
-  'p2_c3': ['key', 40, 45, 50, 60, 75]     // Porsche 919 Street
+  'p1_c1': [85, 25, 29, 38, 54, 69],       // Zenvo Aurora Tur
+  'p1_c2': ['key', 40, 45, 60, 70, 85],    // DEUS Vayanne
+  'p1_c3': ['key', 40, 45, 50, 60, 75],    // Porsche 919 Street
+  'p2_c1': [35, 40, 45, 50, 60, 70],       // Aeon E
+  'p2_c2': ['key', 40, 45, 60, 70, 85],    // SSC Tuatara
+  'p2_c3': ['key', 30, 40, 50, 65, 80]     // Mercedes-Benz Vision One-Eleven
 };
 
 function getCarMaxBP(key) {
@@ -52,7 +53,7 @@ function calcPack(prefix) {
   const c1 = computeCarBP(prefix, 'c1');
   const c2 = computeCarBP(prefix, 'c2');
   const c3 = computeCarBP(prefix, 'c3');
-  const packCost = +($(prefix + '_packCost').value) || 750;
+  const packCost = +($(prefix + '_packCost').value) || DEFAULT_PACK_COSTS[prefix];
   const total = c1 + c2 + c3;
   const packMax = getPackMaxBP(prefix);
   const remaining = Math.max(0, packMax - total);
@@ -109,7 +110,7 @@ function resetPack(p) {
     if (bp) bp.value = 0;
     syncBPInput(p, id);
   });
-  if ($(p + '_packCost')) $(p + '_packCost').value = 750;
+  if ($(p + '_packCost')) $(p + '_packCost').value = DEFAULT_PACK_COSTS[p];
   if ($(p + '_out')) $(p + '_out').style.display = 'none';
 }
 
@@ -155,32 +156,32 @@ document.addEventListener('DOMContentLoaded', () => {
       syncBPInput(p, id);
     });
     const qpc = q.get(`${p}_packCost`);
-    if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || 750;
+    if (qpc !== null && $(p + '_packCost')) $(p + '_packCost').value = +qpc || DEFAULT_PACK_COSTS[p];
     if (any) calcPack(p);
   });
   // Reverse calculator logic
   if ($('rev_calc')) $('rev_calc').onclick = () => {
     const tokens = Math.max(0, +$('rev_tokens').value || 0);
-    const packCost = Math.max(1, +$('rev_packCost').value || 750);
-    const bpPerPack = Math.max(0.1, +$('rev_bpPerPack').value || 11.33);
-    const packs = Math.floor(tokens / packCost);
-    const safePacks = Math.floor(packs / FIX_SAFETY);
-    // For each pack, show total BPs (rounded down) and safe BPs
+    const bpPerPack = Math.max(0.1, +$('rev_bpPerPack').value || FIX_BP_PER_PACK);
     const packsArr = [
       { prefix: 'p1', pack: 'Pack #1' },
       { prefix: 'p2', pack: 'Pack #2' }
     ];
+    packsArr.forEach(group => {
+      const packCost = Math.max(1, +$(`rev_${group.prefix}_packCost`).value || DEFAULT_PACK_COSTS[group.prefix]);
+      group.packs = Math.floor(tokens / packCost);
+      group.safePacks = Math.floor(group.packs / FIX_SAFETY);
+    });
     let html = `
       <div class="out-stats">
         <div><span>Tokens:</span> <strong>${fmt(tokens)}</strong></div>
-        <div><span>Packs:</span> <strong>${packs}</strong></div>
-        <div><span>Safe Packs (90%):</span> <strong>${safePacks}</strong></div>
+        ${packsArr.map(group => `<div><span>${group.pack} packs:</span> <strong>${group.packs}</strong> (safe: ${group.safePacks})</div>`).join('')}
       </div>`;
     function roundTo4(n) { return Math.floor(n / 4) * 4; }
     packsArr.forEach(group => {
       const packMax = getPackMaxBP(group.prefix);
-      let totalBP = roundTo4(packs * bpPerPack);
-      let safeBP = roundTo4(safePacks * bpPerPack);
+      let totalBP = roundTo4(group.packs * bpPerPack);
+      let safeBP = roundTo4(group.safePacks * bpPerPack);
       if (totalBP > packMax) totalBP = packMax;
       if (safeBP > packMax) safeBP = packMax;
       html += `
@@ -194,8 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   if ($('rev_reset')) $('rev_reset').onclick = () => {
     $('rev_tokens').value = 0;
-    $('rev_packCost').value = 750;
-    $('rev_bpPerPack').value = 11.33;
+    $('rev_p1_packCost').value = DEFAULT_PACK_COSTS.p1;
+    $('rev_p2_packCost').value = DEFAULT_PACK_COSTS.p2;
+    $('rev_bpPerPack').value = FIX_BP_PER_PACK;
     $('rev_out').style.display = 'none';
   };
 });
