@@ -1,4 +1,4 @@
-const DEFAULT_PACK_COSTS = { p1: 750, p2: 900 };
+const DEFAULT_PACK_COSTS = { p1: 750, p2: 750 };
 const FIX_BP_PER_PACK = 11.33, FIX_SAFETY = 1.1;
 const $ = id => document.getElementById(id);
 const fmt = n => n.toLocaleString();
